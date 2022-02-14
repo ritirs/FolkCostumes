@@ -1,0 +1,14 @@
+INSERT INTO public."group" (id, group_name) VALUES (1, 'Sukad ja Tagi');
+INSERT INTO public."group" (id, group_name) VALUES (2, 'Jüri Marid');
+INSERT INTO public."group" (id, group_name) VALUES (3, 'Lustilised');
+INSERT INTO public."group" (id, group_name) VALUES (4, 'Joondu segarühm');
+INSERT INTO public."group" (id, group_name) VALUES (5, 'Joondu 6.-9. klass');
+INSERT INTO public.roletype (id, name) VALUES (1, 'Juhendaja');
+INSERT INTO public.roletype (id, name) VALUES (2, 'Tantsija');
+INSERT INTO public.roletype (id, name) VALUES (3, 'Muu kasutaja');
+INSERT INTO public.roletype (id, name) VALUES (4, 'Rhvrte vastutav');
+INSERT INTO public.roletype (id, name) VALUES (5, 'Admin');
+INSERT INTO public.status_type (id, location) VALUES (1, 'Laos Kultuurikeskuses');
+INSERT INTO public.status_type (id, location) VALUES (2, 'Laos Jüri Gümnaasiumis');
+INSERT INTO public.status_type (id, location) VALUES (3, 'Tantsija käes');
+INSERT INTO public.status_type (id, location) VALUES (4, 'Paranduses');

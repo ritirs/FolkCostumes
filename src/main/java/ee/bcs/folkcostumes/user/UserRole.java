@@ -13,6 +13,18 @@ public class UserRole {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private RoleType roleType;
+
+    public RoleType getRole() {
+        return roleType;
+    }
+
+    public void setRole(RoleType roleType) {
+        this.roleType = roleType;
+    }
+
     public User getUser() {
         return user;
     }

@@ -1,5 +1,6 @@
 package ee.bcs.folkcostumes.transactions;
 
+import ee.bcs.folkcostumes.costume.StatusType;
 import ee.bcs.folkcostumes.user.User;
 
 import javax.persistence.*;
@@ -14,6 +15,18 @@ public class Status {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_type_id")
+    private StatusType statusType;
+
+    public StatusType getStatusType() {
+        return statusType;
+    }
+
+    public void setStatusType(StatusType statusType) {
+        this.statusType = statusType;
+    }
 
     public User getUser() {
         return user;

@@ -59,8 +59,8 @@ CREATE TABLE inventory_balance (
     CONSTRAINT inventory_balance_pk PRIMARY KEY (id)
 );
 
--- Table: role
-CREATE TABLE role (
+-- Table: roleType
+CREATE TABLE roleType (
     id serial  NOT NULL,
     name varchar(20)  NOT NULL,
     CONSTRAINT role_pk PRIMARY KEY (id)
@@ -225,7 +225,7 @@ ALTER TABLE user_in_group ADD CONSTRAINT user_in_group_user_role
 -- Reference: user_role_role (table: user_role)
 ALTER TABLE user_role ADD CONSTRAINT user_role_role
     FOREIGN KEY (role_id)
-    REFERENCES role (id)  
+    REFERENCES roleType (id)
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;

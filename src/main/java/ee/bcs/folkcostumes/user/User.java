@@ -1,5 +1,7 @@
 package ee.bcs.folkcostumes.user;
 
+import ee.bcs.folkcostumes.transactions.Status;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;

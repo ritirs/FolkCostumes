@@ -1,4 +1,6 @@
-package ee.bcs.folkcostumes.user;
+package ee.bcs.folkcostumes.transactions;
+
+import ee.bcs.folkcostumes.user.User;
 
 import javax.persistence.*;
 

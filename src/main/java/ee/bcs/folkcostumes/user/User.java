@@ -2,6 +2,8 @@ package ee.bcs.folkcostumes.user;
 
 import ee.bcs.folkcostumes.transactions.Status;
 
+import ee.bcs.folkcostumes.transactions.Transaction;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -28,7 +30,7 @@ public class User {
     private Set<UserInGroup> userInGroups = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Status> statuses = new LinkedHashSet<>();
+    private Set<Transaction.Status> statuses = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
     private Set<UserRole> userRoles = new LinkedHashSet<>();
@@ -41,11 +43,11 @@ public class User {
         this.userRoles = userRoles;
     }
 
-    public Set<Status> getStatuses() {
+    public Set<Transaction.Status> getStatuses() {
         return statuses;
     }
 
-    public void setStatuses(Set<Status> statuses) {
+    public void setStatuses(Set<Transaction.Status> statuses) {
         this.statuses = statuses;
     }
 

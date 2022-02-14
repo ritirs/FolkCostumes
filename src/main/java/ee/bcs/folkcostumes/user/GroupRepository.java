@@ -1,4 +1,4 @@
-package user;
+package ee.bcs.folkcostumes.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

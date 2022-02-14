@@ -12,3 +12,16 @@ INSERT INTO public.status_type (id, location) VALUES (1, 'Laos Kultuurikeskuses'
 INSERT INTO public.status_type (id, location) VALUES (2, 'Laos Jüri Gümnaasiumis');
 INSERT INTO public.status_type (id, location) VALUES (3, 'Tantsija käes');
 INSERT INTO public.status_type (id, location) VALUES (4, 'Paranduses');
+
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Põll');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Vööpael');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Linane seelik');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Vana lumivalge');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Uus seelik');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Liistik triibuline');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'särk');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Püksid');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Vatt');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Vöö');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Särk');
+INSERT INTO public.element_type (id, element_type) VALUES (DEFAULT, 'Kaabu');

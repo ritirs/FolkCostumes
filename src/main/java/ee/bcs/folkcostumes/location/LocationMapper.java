@@ -1,0 +1,13 @@
+package ee.bcs.folkcostumes.location;
+
+import org.mapstruct.*;
+
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+public interface LocationMapper {
+    Location locationDtoToLocation(LocationDto locationDto);
+
+    LocationDto locationToLocationDto(Location location);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateLocationFromLocationDto(LocationDto locationDto, @MappingTarget Location location);
+}

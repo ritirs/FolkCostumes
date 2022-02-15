@@ -1,12 +1,12 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-02-14 09:59:18.316
+-- Last modification date: 2022-02-14 18:40:00.812
 
 -- tables
 -- Table: contact
 CREATE TABLE contact (
     id serial  NOT NULL,
     email varchar(50)  NULL,
-    telephone int  NULL,
+    telephone varchar(15)  NULL,
     birth_date date  NOT NULL,
     address varchar(50)  NOT NULL,
     CONSTRAINT contact_pk PRIMARY KEY (id)
@@ -46,7 +46,7 @@ CREATE TABLE element_type (
 -- Table: group
 CREATE TABLE "group" (
     id serial  NOT NULL,
-    group_name int  NOT NULL,
+    group_name varchar(50)  NOT NULL,
     CONSTRAINT group_pk PRIMARY KEY (id)
 );
 
@@ -59,11 +59,11 @@ CREATE TABLE inventory_balance (
     CONSTRAINT inventory_balance_pk PRIMARY KEY (id)
 );
 
--- Table: roleType
-CREATE TABLE roleType (
+-- Table: role_type
+CREATE TABLE role_type (
     id serial  NOT NULL,
     name varchar(20)  NOT NULL,
-    CONSTRAINT role_pk PRIMARY KEY (id)
+    CONSTRAINT role_type_pk PRIMARY KEY (id)
 );
 
 -- Table: status
@@ -77,7 +77,7 @@ CREATE TABLE status (
 -- Table: status_type
 CREATE TABLE status_type (
     id serial  NOT NULL,
-    location int  NOT NULL,
+    location varchar(50)  NOT NULL,
     CONSTRAINT status_type_pk PRIMARY KEY (id)
 );
 
@@ -94,8 +94,8 @@ CREATE TABLE transactions (
 -- Table: user
 CREATE TABLE "user" (
     id serial  NOT NULL,
-    firstname int  NOT NULL,
-    lastname int  NOT NULL,
+    firstname varchar(50)  NOT NULL,
+    lastname varchar(50)  NOT NULL,
     contact_id int  NOT NULL,
     CONSTRAINT user_pk PRIMARY KEY (id)
 );
@@ -225,7 +225,7 @@ ALTER TABLE user_in_group ADD CONSTRAINT user_in_group_user_role
 -- Reference: user_role_role (table: user_role)
 ALTER TABLE user_role ADD CONSTRAINT user_role_role
     FOREIGN KEY (role_id)
-    REFERENCES roleType (id)
+    REFERENCES role_type (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;

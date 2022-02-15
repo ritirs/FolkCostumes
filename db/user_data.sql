@@ -10,7 +10,7 @@ INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Riti');
 INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Eva');
 INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Tiiu');
 INSERT INTO public.user (id, username) VALUES (DEFAULT, 'admin');
-;
+
 INSERT INTO public.contact (id, firstname, lastname, email, telephone, birth_date, address, user_id) VALUES (DEFAULT, 'Linda', 'Laululind', 'linda@mail.ee', '+372 55232343', '1990-03-15', 'Saare 4, Tallinn', 1);
 INSERT INTO public.contact (id, firstname, lastname, email, telephone, birth_date, address, user_id) VALUES (DEFAULT, 'Liina', 'Viirsalu', 'liina@gmail.com', '+372 506789098', '1998-07-14', 'Pronksi 56, Tallinn', 2);
 INSERT INTO public.contact (id, firstname, lastname, email, telephone, birth_date, address, user_id) VALUES (DEFAULT, 'Birgit', 'Parma', 'Birgit@hotmail.com', '+372 55002343', '1997-06-11', 'Marja 14-23, Tallinn', 3);

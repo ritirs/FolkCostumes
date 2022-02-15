@@ -1,26 +1,26 @@
-package ee.bcs.folkcostumes.inventoryLog;
+package ee.bcs.folkcostumes.inventoryLogA;
 
 import ee.bcs.folkcostumes.costume.Element;
-import ee.bcs.folkcostumes.inventoryLog.Location;
-import ee.bcs.folkcostumes.user.User;
+import ee.bcs.folkcostumes.userA.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "location_balance")
-public class LocationBalance {
+@Table(name = "location_log")
+public class LocationLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "element_id", nullable = false)
     private Element element;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -28,6 +28,28 @@ public class LocationBalance {
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
+
+    @Column(name = "balance", nullable = false)
+    private Integer balance;
+
+    @Column(name = "transaction_time", nullable = false)
+    private LocalDate transactionTime;
+
+    public LocalDate getTransactionTime() {
+        return transactionTime;
+    }
+
+    public void setTransactionTime(LocalDate transactionTime) {
+        this.transactionTime = transactionTime;
+    }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
 
     public Integer getQuantity() {
         return quantity;
@@ -45,20 +67,20 @@ public class LocationBalance {
         this.user = user;
     }
 
-    public Element getElement() {
-        return element;
-    }
-
-    public void setElement(Element element) {
-        this.element = element;
-    }
-
     public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
     }
 
     public Integer getId() {

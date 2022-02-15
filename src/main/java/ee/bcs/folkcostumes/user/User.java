@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.userA;
+package ee.bcs.folkcostumes.user;
 
 import javax.persistence.*;
 

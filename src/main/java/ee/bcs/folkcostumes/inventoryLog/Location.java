@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.inventoryLogA;
+package ee.bcs.folkcostumes.inventoryLog;
 
 import javax.persistence.*;
 

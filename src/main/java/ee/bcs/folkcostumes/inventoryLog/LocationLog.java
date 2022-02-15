@@ -1,9 +1,11 @@
 package ee.bcs.folkcostumes.inventoryLog;
 
 import ee.bcs.folkcostumes.costume.Element;
+import ee.bcs.folkcostumes.inventoryLog.Location;
 import ee.bcs.folkcostumes.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "location_log")
@@ -12,17 +14,59 @@ public class LocationLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "element_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "element_id", nullable = false)
     private Element element;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "location_id", nullable = false)
     private Location location;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
+
+    @Column(name = "balance", nullable = false)
+    private Integer balance;
+
+    @Column(name = "transaction_time", nullable = false)
+    private LocalDate transactionTime;
+
+    public LocalDate getTransactionTime() {
+        return transactionTime;
+    }
+
+    public void setTransactionTime(LocalDate transactionTime) {
+        this.transactionTime = transactionTime;
+    }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Location getLocation() {
         return location;
@@ -40,14 +84,6 @@ public class LocationLog {
         this.element = element;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -55,6 +91,4 @@ public class LocationLog {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    //TODO Reverse Engineering! Migrate other columns to the entity
 }

@@ -9,21 +9,14 @@ public class ElementInCostume {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "element_id")
-    private Element element;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "costume_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "costume_id", nullable = false)
     private Costume costume;
 
-    public Costume getCostume() {
-        return costume;
-    }
-
-    public void setCostume(Costume costume) {
-        this.costume = costume;
-    }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "element_id", nullable = false)
+    private Element element;
 
     public Element getElement() {
         return element;
@@ -33,6 +26,14 @@ public class ElementInCostume {
         this.element = element;
     }
 
+    public Costume getCostume() {
+        return costume;
+    }
+
+    public void setCostume(Costume costume) {
+        this.costume = costume;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -40,6 +41,4 @@ public class ElementInCostume {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    //TODO Reverse Engineering! Migrate other columns to the entity
 }

@@ -10,6 +10,17 @@ public class ElementType {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "element_type", nullable = false, length = 50)
+    private String elementType;
+
+    public String getElementType() {
+        return elementType;
+    }
+
+    public void setElementType(String elementType) {
+        this.elementType = elementType;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -17,6 +28,4 @@ public class ElementType {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    //TODO Reverse Engineering! Migrate other columns to the entity
 }

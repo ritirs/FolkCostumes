@@ -9,24 +9,25 @@ public class RoleInGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
-    private Group group;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_type_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_type_id", nullable = false)
     private RoleType roleType;
 
-    public RoleType getRoleType() {
-        return roleType;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "group_id", nullable = false)
+    private Group group;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Group getGroup() {
@@ -37,12 +38,12 @@ public class RoleInGroup {
         this.group = group;
     }
 
-    public User getUser() {
-        return user;
+    public RoleType getRoleType() {
+        return roleType;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
     }
 
     public Integer getId() {
@@ -52,6 +53,4 @@ public class RoleInGroup {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    //TODO Reverse Engineering! Migrate other columns to the entity
 }

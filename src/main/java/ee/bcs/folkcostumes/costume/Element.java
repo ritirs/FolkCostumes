@@ -1,11 +1,6 @@
 package ee.bcs.folkcostumes.costume;
 
-import ee.bcs.folkcostumes.inventoryLog.LocationBalance;
-import ee.bcs.folkcostumes.inventoryLog.LocationLog;
-
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "element")
@@ -24,39 +19,6 @@ public class Element {
 
     @Column(name = "description", nullable = false, length = 250)
     private String description;
-
-    @OneToMany(mappedBy = "element")
-    private Set<LocationLog> locationLogs = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "element")
-    private Set<ElementInCostume> elementInCostumes = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "element")
-    private Set<LocationBalance> locationBalances = new LinkedHashSet<>();
-
-    public Set<LocationBalance> getLocationBalances() {
-        return locationBalances;
-    }
-
-    public void setLocationBalances(Set<LocationBalance> locationBalances) {
-        this.locationBalances = locationBalances;
-    }
-
-    public Set<ElementInCostume> getElementInCostumes() {
-        return elementInCostumes;
-    }
-
-    public void setElementInCostumes(Set<ElementInCostume> elementInCostumes) {
-        this.elementInCostumes = elementInCostumes;
-    }
-
-    public Set<LocationLog> getLocationLogs() {
-        return locationLogs;
-    }
-
-    public void setLocationLogs(Set<LocationLog> locationLogs) {
-        this.locationLogs = locationLogs;
-    }
 
     public String getDescription() {
         return description;

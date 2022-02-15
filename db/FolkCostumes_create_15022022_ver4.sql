@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-02-15 10:07:42.594
+-- Last modification date: 2022-02-15 11:30:11.883
 
 -- tables
 -- Table: contact
@@ -77,9 +77,8 @@ CREATE TABLE location_log (
     location_id int  NOT NULL,
     user_id int  NOT NULL,
     quantity int  NOT NULL,
-    transaction_time date  NOT NULL,
     balance int  NOT NULL,
-    date date  NOT NULL,
+    transaction_time date  NOT NULL,
     CONSTRAINT location_log_pk PRIMARY KEY (id)
 );
 
@@ -209,34 +208,6 @@ ALTER TABLE role_in_group ADD CONSTRAINT role_in_group_user
     REFERENCES "user" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
-;
-
--- sequences
--- Sequence: costume_set_element_type_seq
-CREATE SEQUENCE costume_set_element_type_seq
-      INCREMENT BY 1
-      NO MINVALUE
-      NO MAXVALUE
-      START WITH 1
-      NO CYCLE
-;
-
--- Sequence: costume_set_seq
-CREATE SEQUENCE costume_set_seq
-      INCREMENT BY 1
-      NO MINVALUE
-      NO MAXVALUE
-      START WITH 1
-      NO CYCLE
-;
-
--- Sequence: set_element_seq
-CREATE SEQUENCE set_element_seq
-      INCREMENT BY 1
-      NO MINVALUE
-      NO MAXVALUE
-      START WITH 1
-      NO CYCLE
 ;
 
 -- End of file.

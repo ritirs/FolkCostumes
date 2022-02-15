@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-02-15 10:02:46.818
+-- Last modification date: 2022-02-15 10:07:42.594
 
 -- tables
 -- Table: contact
@@ -35,7 +35,7 @@ CREATE TABLE element (
 CREATE TABLE element_in_costume (
     id serial  NOT NULL,
     costume_id int  NOT NULL,
-    set_element_id int  NOT NULL,
+    element_id int  NOT NULL,
     CONSTRAINT element_in_costume_pk PRIMARY KEY (id)
 );
 
@@ -133,7 +133,7 @@ ALTER TABLE element_in_costume ADD CONSTRAINT element_in_costume_costume
 
 -- Reference: element_in_costume_element (table: element_in_costume)
 ALTER TABLE element_in_costume ADD CONSTRAINT element_in_costume_element
-    FOREIGN KEY (set_element_id)
+    FOREIGN KEY (element_id)
     REFERENCES element (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE

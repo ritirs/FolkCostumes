@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-02-15 09:01:19.504
+-- Last modification date: 2022-02-15 10:02:46.818
 
 -- tables
 -- Table: contact
@@ -74,7 +74,7 @@ CREATE TABLE location_balance (
 CREATE TABLE location_log (
     id serial  NOT NULL,
     element_id int  NOT NULL,
-    status_type_id int  NOT NULL,
+    location_id int  NOT NULL,
     user_id int  NOT NULL,
     quantity int  NOT NULL,
     transaction_time date  NOT NULL,
@@ -115,6 +115,14 @@ ALTER TABLE contact ADD CONSTRAINT contact_user
     INITIALLY IMMEDIATE
 ;
 
+-- Reference: element_element_type (table: element)
+ALTER TABLE element ADD CONSTRAINT element_element_type
+    FOREIGN KEY (element_type_id)
+    REFERENCES element_type (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
 -- Reference: element_in_costume_costume (table: element_in_costume)
 ALTER TABLE element_in_costume ADD CONSTRAINT element_in_costume_costume
     FOREIGN KEY (costume_id)
@@ -123,8 +131,8 @@ ALTER TABLE element_in_costume ADD CONSTRAINT element_in_costume_costume
     INITIALLY IMMEDIATE
 ;
 
--- Reference: element_in_costume_set_element (table: element_in_costume)
-ALTER TABLE element_in_costume ADD CONSTRAINT element_in_costume_set_element
+-- Reference: element_in_costume_element (table: element_in_costume)
+ALTER TABLE element_in_costume ADD CONSTRAINT element_in_costume_element
     FOREIGN KEY (set_element_id)
     REFERENCES element (id)  
     NOT DEFERRABLE 
@@ -139,30 +147,6 @@ ALTER TABLE location_balance ADD CONSTRAINT inventory_balance_element
     INITIALLY IMMEDIATE
 ;
 
--- Reference: inventory_transaction_element (table: location_log)
-ALTER TABLE location_log ADD CONSTRAINT inventory_transaction_element
-    FOREIGN KEY (element_id)
-    REFERENCES element (id)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: inventory_transaction_status_type (table: location_log)
-ALTER TABLE location_log ADD CONSTRAINT inventory_transaction_status_type
-    FOREIGN KEY (status_type_id)
-    REFERENCES location (id)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: inventory_transaction_user (table: location_log)
-ALTER TABLE location_log ADD CONSTRAINT inventory_transaction_user
-    FOREIGN KEY (user_id)
-    REFERENCES "user" (id)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
 -- Reference: location_balance_location (table: location_balance)
 ALTER TABLE location_balance ADD CONSTRAINT location_balance_location
     FOREIGN KEY (location_id)
@@ -173,6 +157,30 @@ ALTER TABLE location_balance ADD CONSTRAINT location_balance_location
 
 -- Reference: location_balance_user (table: location_balance)
 ALTER TABLE location_balance ADD CONSTRAINT location_balance_user
+    FOREIGN KEY (user_id)
+    REFERENCES "user" (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: location_log_element (table: location_log)
+ALTER TABLE location_log ADD CONSTRAINT location_log_element
+    FOREIGN KEY (element_id)
+    REFERENCES element (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: location_log_location (table: location_log)
+ALTER TABLE location_log ADD CONSTRAINT location_log_location
+    FOREIGN KEY (location_id)
+    REFERENCES location (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: location_log_user (table: location_log)
+ALTER TABLE location_log ADD CONSTRAINT location_log_user
     FOREIGN KEY (user_id)
     REFERENCES "user" (id)  
     NOT DEFERRABLE 
@@ -199,14 +207,6 @@ ALTER TABLE role_in_group ADD CONSTRAINT role_in_group_role_type
 ALTER TABLE role_in_group ADD CONSTRAINT role_in_group_user
     FOREIGN KEY (user_id)
     REFERENCES "user" (id)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: set_element_element_type (table: element)
-ALTER TABLE element ADD CONSTRAINT set_element_element_type
-    FOREIGN KEY (element_type_id)
-    REFERENCES element_type (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;

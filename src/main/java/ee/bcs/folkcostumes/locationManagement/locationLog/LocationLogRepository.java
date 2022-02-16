@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.locationLog;
+package ee.bcs.folkcostumes.locationManagement.locationLog;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

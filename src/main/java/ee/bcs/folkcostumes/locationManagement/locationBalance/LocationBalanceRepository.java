@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.locationBalance;
+package ee.bcs.folkcostumes.locationManagement.locationBalance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

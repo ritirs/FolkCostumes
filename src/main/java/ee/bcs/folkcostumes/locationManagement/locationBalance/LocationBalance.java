@@ -1,7 +1,7 @@
-package ee.bcs.folkcostumes.locationBalance;
+package ee.bcs.folkcostumes.locationManagement.locationBalance;
 
 import ee.bcs.folkcostumes.inventory.element.Element;
-import ee.bcs.folkcostumes.location.Location;
+import ee.bcs.folkcostumes.locationManagement.location.Location;
 import ee.bcs.folkcostumes.userManagement.user.User;
 
 import javax.persistence.*;

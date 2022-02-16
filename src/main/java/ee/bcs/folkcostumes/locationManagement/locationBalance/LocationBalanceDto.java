@@ -1,7 +1,7 @@
-package ee.bcs.folkcostumes.locationBalance;
+package ee.bcs.folkcostumes.locationManagement.locationBalance;
 
 import ee.bcs.folkcostumes.inventory.element.ElementDto;
-import ee.bcs.folkcostumes.location.LocationDto;
+import ee.bcs.folkcostumes.locationManagement.location.LocationDto;
 import ee.bcs.folkcostumes.userManagement.user.UserDto;
 import lombok.Data;
 

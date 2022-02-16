@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.location;
+package ee.bcs.folkcostumes.locationManagement.location;
 
 import javax.persistence.*;
 

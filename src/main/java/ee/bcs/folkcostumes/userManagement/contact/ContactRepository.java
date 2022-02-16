@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.contact;
+package ee.bcs.folkcostumes.userManagement.contact;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

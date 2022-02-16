@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.roleType;
+package ee.bcs.folkcostumes.userManagement.roleType;
 
 import lombok.Data;
 

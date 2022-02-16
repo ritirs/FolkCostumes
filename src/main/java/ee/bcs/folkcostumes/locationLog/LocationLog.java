@@ -2,7 +2,7 @@ package ee.bcs.folkcostumes.locationLog;
 
 import ee.bcs.folkcostumes.inventory.element.Element;
 import ee.bcs.folkcostumes.location.Location;
-import ee.bcs.folkcostumes.user.User;
+import ee.bcs.folkcostumes.userManagement.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -1,8 +1,8 @@
-package ee.bcs.folkcostumes.roleInGroup;
+package ee.bcs.folkcostumes.userManagement.roleInGroup;
 
-import ee.bcs.folkcostumes.group.Group;
-import ee.bcs.folkcostumes.roleType.RoleType;
-import ee.bcs.folkcostumes.user.User;
+import ee.bcs.folkcostumes.userManagement.group.Group;
+import ee.bcs.folkcostumes.userManagement.roleType.RoleType;
+import ee.bcs.folkcostumes.userManagement.user.User;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.group;
+package ee.bcs.folkcostumes.userManagement.group;
 
 import lombok.Data;
 

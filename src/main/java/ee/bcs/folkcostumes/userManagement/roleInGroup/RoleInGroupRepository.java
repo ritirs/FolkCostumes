@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.roleInGroup;
+package ee.bcs.folkcostumes.userManagement.roleInGroup;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

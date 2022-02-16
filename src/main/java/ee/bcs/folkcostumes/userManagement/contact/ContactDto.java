@@ -1,6 +1,6 @@
-package ee.bcs.folkcostumes.contact;
+package ee.bcs.folkcostumes.userManagement.contact;
 
-import ee.bcs.folkcostumes.user.UserDto;
+import ee.bcs.folkcostumes.userManagement.user.UserDto;
 import lombok.Data;
 
 import java.io.Serializable;

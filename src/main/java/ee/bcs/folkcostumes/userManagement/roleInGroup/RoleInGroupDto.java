@@ -1,8 +1,8 @@
-package ee.bcs.folkcostumes.roleInGroup;
+package ee.bcs.folkcostumes.userManagement.roleInGroup;
 
-import ee.bcs.folkcostumes.group.GroupDto;
-import ee.bcs.folkcostumes.roleType.RoleTypeDto;
-import ee.bcs.folkcostumes.user.UserDto;
+import ee.bcs.folkcostumes.userManagement.group.GroupDto;
+import ee.bcs.folkcostumes.userManagement.roleType.RoleTypeDto;
+import ee.bcs.folkcostumes.userManagement.user.UserDto;
 import lombok.Data;
 
 import java.io.Serializable;

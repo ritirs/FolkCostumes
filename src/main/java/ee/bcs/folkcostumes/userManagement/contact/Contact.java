@@ -1,6 +1,6 @@
-package ee.bcs.folkcostumes.contact;
+package ee.bcs.folkcostumes.userManagement.contact;
 
-import ee.bcs.folkcostumes.user.User;
+import ee.bcs.folkcostumes.userManagement.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;

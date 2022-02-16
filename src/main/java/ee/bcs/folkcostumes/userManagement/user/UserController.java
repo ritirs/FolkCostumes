@@ -1,5 +1,6 @@
-package ee.bcs.folkcostumes.userManagement;
+package ee.bcs.folkcostumes.userManagement.user;
 
+import ee.bcs.folkcostumes.userManagement.contact.ContactDto;
 import ee.bcs.folkcostumes.userManagement.contact.ContactService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,16 +11,20 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/user")
-public class UserManagementController {
+
+public class UserController {
 
     @Resource
     private ContactService contactService;
 
-    @PostMapping("/add/new")
-    public String addNewUser (@RequestBody UserDataRequest userDataRequest) {
-        contactService.addNewUser(userDataRequest);
-        return "Uus kasutaja lisatud";
-    }
+    @Resource
+    private UserService userService;
 
+    @PostMapping("/add/new")
+    public ContactDto addNewUser(@RequestBody UserDataRequest userDataRequest) {
+        String username = userDataRequest.getUsername();
+        User newUser = userService.addNewUser(username);
+        return contactService.addNewContact(userDataRequest, newUser);
+    }
 
 }

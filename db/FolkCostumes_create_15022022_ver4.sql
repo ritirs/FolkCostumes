@@ -101,7 +101,7 @@ CREATE TABLE role_type (
 -- Table: user
 CREATE TABLE "user" (
     id serial  NOT NULL,
-    username varchar  NOT NULL,
+    username varchar(10)  NOT NULL,
     CONSTRAINT user_pk PRIMARY KEY (id)
 );
 

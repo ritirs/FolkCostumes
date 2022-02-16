@@ -27,9 +27,9 @@ public class ElementTypeService {
     }
 
 
-    public ElementType findElementTypesByName(String elementTypeRequest) {
-        ElementType elementType = elementTypeRepository.findByElementTypeIsLikeIgnoreCase(elementTypeRequest);
-        ElementTypeDto response = elementTypeMapper.elementTypesToElementTypeDtos();
-        return response;
+    public List <ElementTypeDto>findElementTypesByName(String elementTypeRequest) {
+        List<ElementType> newElementTypes = elementTypeRepository.findListByElementType(elementTypeRequest);
+        List <ElementTypeDto> elementTypeDtos = elementTypeMapper.elementTypesToElementTypeDtos(newElementTypes);
+        return elementTypeDtos;
     }
 }

@@ -2,6 +2,7 @@ package ee.bcs.folkcostumes.inventory;
 
 import ee.bcs.folkcostumes.inventory.costume.CostumeDto;
 import ee.bcs.folkcostumes.inventory.costume.CostumeService;
+import ee.bcs.folkcostumes.inventory.elementType.ElementType;
 import ee.bcs.folkcostumes.inventory.elementType.ElementTypeDto;
 import ee.bcs.folkcostumes.inventory.elementType.ElementTypeService;
 import org.springframework.web.bind.annotation.*;
@@ -35,10 +36,10 @@ public class CostumeController {
         return elementTypeDtos;
     }
 
-    @GetMapping("/find/element/type/by/name")
-    public ElementTypeDto findElementTypesByName(@RequestParam String elementTypeRequest) {
-        ElementTypeDto response = elementTypeService.findElementTypesByName(elementTypeRequest);
-        return response;
+    @PostMapping ("/find/element/type/by/name")
+    public List<ElementTypeDto> findElementTypesByName(@RequestParam String elementTypeRequest) {
+        List<ElementTypeDto> elementTypeDtos = elementTypeService.findElementTypesByName(elementTypeRequest);
+        return elementTypeDtos;
     }
 
     @PostMapping("/add/new/costume")
@@ -52,7 +53,5 @@ public class CostumeController {
         List<CostumeDto> costumeDtos = costumeService.findAllCostumes();
         return costumeDtos;
     }
-
-
 
 }

@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.elementInCostume;
+package ee.bcs.folkcostumes.inventory.elementInCostume;
 
 import org.mapstruct.*;
 

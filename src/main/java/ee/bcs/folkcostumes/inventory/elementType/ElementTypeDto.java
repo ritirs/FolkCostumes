@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.elementType;
+package ee.bcs.folkcostumes.inventory.elementType;
 
 import lombok.Data;
 

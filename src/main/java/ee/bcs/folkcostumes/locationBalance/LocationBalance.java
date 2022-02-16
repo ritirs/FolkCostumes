@@ -1,6 +1,6 @@
 package ee.bcs.folkcostumes.locationBalance;
 
-import ee.bcs.folkcostumes.element.Element;
+import ee.bcs.folkcostumes.inventory.element.Element;
 import ee.bcs.folkcostumes.location.Location;
 import ee.bcs.folkcostumes.user.User;
 

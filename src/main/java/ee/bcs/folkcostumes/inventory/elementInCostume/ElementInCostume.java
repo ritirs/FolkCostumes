@@ -1,7 +1,7 @@
-package ee.bcs.folkcostumes.elementInCostume;
+package ee.bcs.folkcostumes.inventory.elementInCostume;
 
-import ee.bcs.folkcostumes.costume.Costume;
-import ee.bcs.folkcostumes.element.Element;
+import ee.bcs.folkcostumes.inventory.costume.Costume;
+import ee.bcs.folkcostumes.inventory.element.Element;
 
 import javax.persistence.*;
 

@@ -1,7 +1,12 @@
-package ee.bcs.folkcostumes.elementType;
+package ee.bcs.folkcostumes.inventory.elementType;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "element_type")
 public class ElementType {

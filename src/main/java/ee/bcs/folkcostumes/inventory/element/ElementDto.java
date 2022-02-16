@@ -1,6 +1,6 @@
-package ee.bcs.folkcostumes.element;
+package ee.bcs.folkcostumes.inventory.element;
 
-import ee.bcs.folkcostumes.elementType.ElementTypeDto;
+import ee.bcs.folkcostumes.inventory.elementType.ElementTypeDto;
 import lombok.Data;
 
 import java.io.Serializable;

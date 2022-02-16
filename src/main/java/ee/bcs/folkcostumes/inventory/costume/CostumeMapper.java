@@ -1,6 +1,8 @@
-package ee.bcs.folkcostumes.costume;
+package ee.bcs.folkcostumes.inventory.costume;
 
 import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface CostumeMapper {
@@ -8,6 +10,11 @@ public interface CostumeMapper {
 
     CostumeDto costumeToCostumeDto(Costume costume);
 
+    List<CostumeDto> costumesToCostumeDtos(List<Costume> costumes);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateCostumeFromCostumeDto(CostumeDto costumeDto, @MappingTarget Costume costume);
+
+
+
 }

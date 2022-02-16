@@ -1,6 +1,6 @@
-package ee.bcs.folkcostumes.element;
+package ee.bcs.folkcostumes.inventory.element;
 
-import ee.bcs.folkcostumes.elementType.ElementType;
+import ee.bcs.folkcostumes.inventory.elementType.ElementType;
 
 import javax.persistence.*;
 

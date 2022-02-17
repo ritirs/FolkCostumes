@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-02-15 11:30:11.883
+-- Last modification date: 2022-02-17 07:20:41.503
 
 -- tables
 -- Table: contact
@@ -47,7 +47,7 @@ CREATE TABLE element_type (
 );
 
 -- Table: group
-CREATE TABLE group (
+CREATE TABLE "group" (
     id serial  NOT NULL,
     group_name varchar(50)  NOT NULL,
     CONSTRAINT group_pk PRIMARY KEY (id)
@@ -99,9 +99,10 @@ CREATE TABLE role_type (
 );
 
 -- Table: user
-CREATE TABLE user (
+CREATE TABLE "user" (
     id serial  NOT NULL,
     username varchar(10)  NOT NULL,
+    password varchar(10)  NOT NULL,
     CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
@@ -109,7 +110,7 @@ CREATE TABLE user (
 -- Reference: contact_user (table: contact)
 ALTER TABLE contact ADD CONSTRAINT contact_user
     FOREIGN KEY (user_id)
-    REFERENCES user (id)
+    REFERENCES "user" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -157,7 +158,7 @@ ALTER TABLE location_balance ADD CONSTRAINT location_balance_location
 -- Reference: location_balance_user (table: location_balance)
 ALTER TABLE location_balance ADD CONSTRAINT location_balance_user
     FOREIGN KEY (user_id)
-    REFERENCES user (id)
+    REFERENCES "user" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -181,7 +182,7 @@ ALTER TABLE location_log ADD CONSTRAINT location_log_location
 -- Reference: location_log_user (table: location_log)
 ALTER TABLE location_log ADD CONSTRAINT location_log_user
     FOREIGN KEY (user_id)
-    REFERENCES user (id)
+    REFERENCES "user" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -189,7 +190,7 @@ ALTER TABLE location_log ADD CONSTRAINT location_log_user
 -- Reference: role_in_group_group (table: role_in_group)
 ALTER TABLE role_in_group ADD CONSTRAINT role_in_group_group
     FOREIGN KEY (group_id)
-    REFERENCES group (id)
+    REFERENCES "group" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -205,7 +206,7 @@ ALTER TABLE role_in_group ADD CONSTRAINT role_in_group_role_type
 -- Reference: role_in_group_user (table: role_in_group)
 ALTER TABLE role_in_group ADD CONSTRAINT role_in_group_user
     FOREIGN KEY (user_id)
-    REFERENCES user (id)
+    REFERENCES "user" (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;

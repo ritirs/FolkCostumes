@@ -18,19 +18,4 @@ public class ElementType {
     @Column(name = "element_type", nullable = false, length = 50)
     private String elementType;
 
-    public String getElementType() {
-        return elementType;
-    }
-
-    public void setElementType(String elementType) {
-        this.elementType = elementType;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-}
+ }

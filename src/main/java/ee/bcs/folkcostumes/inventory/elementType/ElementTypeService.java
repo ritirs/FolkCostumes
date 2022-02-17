@@ -12,24 +12,26 @@ public class ElementTypeService {
     @Resource private ElementTypeMapper elementTypeMapper;
     @Resource private ElementTypeRepository elementTypeRepository;
 
-    public ElementTypeDto addNewElementType(ElementTypeDto request) {
+    public ElementTypeRequest addNewElementType(ElementTypeRequest request) {
         ElementType newElementType = elementTypeMapper.elementTypeDtoToElementType(request);
         elementTypeRepository.save(newElementType);
-        ElementTypeDto elementTypeDto = elementTypeMapper.elementTypeToElementTypeDto(newElementType);
-        return elementTypeDto;
-
+        ElementTypeRequest elementTypeRequest = elementTypeMapper.elementTypeToElementTypeDto(newElementType);
+        return elementTypeRequest;
     }
 
-    public List<ElementTypeDto> findAllElementTypes() {
+    public List<ElementTypeRequest> findAllElementTypes() {
         List<ElementType> elementTypes = elementTypeRepository.findAll();
-        List<ElementTypeDto> elementTypeDtos = elementTypeMapper.elementTypesToElementTypeDtos(elementTypes);
-        return elementTypeDtos;
+        List<ElementTypeRequest> elementTypeRequests = elementTypeMapper.elementTypesToElementTypeDtos(elementTypes);
+        return elementTypeRequests;
+    }
+
+    //TODO: võimaldab kasutajal otsida elementType nimetuse järgi ja loob nimekirja
+    // elementType'idest, mis vastavad kriteeriumile.
+    public List <ElementTypeRequest>findElementTypesByName(String elementType) {
+        List<ElementType> elementTypes = elementTypeRepository.findByElementTypeName(elementType);
+        List <ElementTypeRequest> elementTypeRequests = elementTypeMapper.elementTypesToElementTypeDtos(elementTypes);
+        return elementTypeRequests;
     }
 
 
-    public List <ElementTypeDto>findElementTypesByName(String elementTypeRequest) {
-        List<ElementType> newElementTypes = elementTypeRepository.findListByElementType(elementTypeRequest);
-        List <ElementTypeDto> elementTypeDtos = elementTypeMapper.elementTypesToElementTypeDtos(newElementTypes);
-        return elementTypeDtos;
-    }
 }

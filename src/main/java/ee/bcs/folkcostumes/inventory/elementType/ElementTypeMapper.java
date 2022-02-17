@@ -8,12 +8,14 @@ import java.util.List;
 public interface ElementTypeMapper {
 
 
-    ElementType elementTypeDtoToElementType(ElementTypeDto elementTypeDto);
+    ElementType elementTypeDtoToElementType(ElementTypeRequest elementTypeRequest);
 
-    ElementTypeDto elementTypeToElementTypeDto(ElementType elementType);
+    ElementTypeRequest elementTypeToElementTypeDto(ElementType elementType);
 
-    List<ElementTypeDto> elementTypesToElementTypeDtos(List<ElementType> elementTypes);
+    List<ElementTypeRequest> elementTypesToElementTypeDtos(List<ElementType> elementTypes);
+
+    ElementTypeRequest toResponse(ElementType elementType);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateElementTypeFromElementTypeDto(ElementTypeDto elementTypeDto, @MappingTarget ElementType elementType);
+    void updateElementTypeFromElementTypeDto(ElementTypeRequest elementTypeRequest, @MappingTarget ElementType elementType);
 }

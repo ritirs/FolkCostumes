@@ -8,5 +8,5 @@ import java.io.Serializable;
 public class UserDto implements Serializable {
     private final Integer id;
     private final String username;
-
+    private final String password;
 }

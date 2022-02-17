@@ -8,6 +8,8 @@ public interface UserMapper {
 
     UserDto userToUserDto(User user);
 
+    User UserByUserDataRequest(UserDataRequest userDataRequest);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateUserFromUserDto(UserDto userDto, @MappingTarget User user);
 }

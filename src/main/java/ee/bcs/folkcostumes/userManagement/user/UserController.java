@@ -19,14 +19,14 @@ public class UserController {
 
     @PostMapping("/add/new")
     public ContactDto addNewUser(@RequestBody UserDataRequest userDataRequest) {
-        String username = userDataRequest.getUsername();
-        User newUser = userService.addNewUser(username);
+        UserDto newUser = userService.addNewUser(userDataRequest);
         return contactService.addNewContact(userDataRequest, newUser);
     }
 
+    @PostMapping("/find/by/name")
     public Integer findUserByName(@RequestParam String firstName, @RequestParam String lastName) {
-        Integer userId = contactService.getUserIdByName(firstName, lastName);
-        return userId;
+        ContactDto contactDto = contactService.getContactDtoByName(firstName, lastName);
+        return contactDto.getUser();
     }
 
 }

@@ -1,8 +1,10 @@
 package ee.bcs.folkcostumes.userManagement.user;
 
+import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -12,22 +14,35 @@ public class UserService {
     @Resource
     private UserRepository userRepository;
 
-    public User addNewUser(String username) {
-        User newUser = new User();
-        newUser.setUsername(username);
+    @Resource
+    private ValidationService validationService;
+
+//    public User addNewUser(String username) {
+//        User newUser = new User();
+//        newUser.setUsername(username);
+//        userRepository.save(newUser);
+//        return newUser;
+//    }
+
+    public UserDto addNewUser(UserDataRequest userDataRequest) {
+        User newUser = userMapper.UserByUserDataRequest(userDataRequest);
         userRepository.save(newUser);
-        return newUser;
+        return userMapper.userToUserDto(newUser);
     }
 
     public UserDto getUserById(Integer userId) {
         User byId = userRepository.getById(userId);
-        UserDto userDto = userMapper.userToUserDto(byId);
-        return userDto;
+        return userMapper.userToUserDto(byId);
     }
 
-    public UserDto getUserByUserName(String userName) {
-        User byUserName = userRepository.findByUsername(userName);
-        return userMapper.userToUserDto(byUserName);
+    public User getUserByUserName(String userName) {
+        return userRepository.findByUsername(userName);
+    }
+
+    public User getValidUserName(String userName) {
+        User userByUserName = userRepository.findByUsername(userName);
+        validationService.userExists(Optional.ofNullable(userByUserName), userName);
+        return null;
     }
 
 }

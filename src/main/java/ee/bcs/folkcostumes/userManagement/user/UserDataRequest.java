@@ -13,5 +13,6 @@ public class UserDataRequest {
     private LocalDate birthDate;
     private String address;
     private String username;
+    private String password;
 
 }

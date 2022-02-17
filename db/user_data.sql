@@ -1,15 +1,15 @@
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Linda');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Liina');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Birgit');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Elerin');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Egle');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Kriste');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Maris');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Kelin');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Riti');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Eva');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'Tiiu');
-INSERT INTO public.user (id, username) VALUES (DEFAULT, 'admin');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Linda','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Liina','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Birgit','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Elerin','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Egle','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Kriste','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Maris','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Kelin','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Riti','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Eva','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'Tiiu','passu');
+INSERT INTO public.user (id, username, password) VALUES (DEFAULT, 'admin','admin');
 
 INSERT INTO public.contact (id, firstname, lastname, email, telephone, birth_date, address, user_id) VALUES (DEFAULT, 'Linda', 'Laululind', 'linda@mail.ee', '+372 55232343', '1990-03-15', 'Saare 4, Tallinn', 1);
 INSERT INTO public.contact (id, firstname, lastname, email, telephone, birth_date, address, user_id) VALUES (DEFAULT, 'Liina', 'Viirsalu', 'liina@gmail.com', '+372 506789098', '1998-07-14', 'Pronksi 56, Tallinn', 2);
@@ -33,7 +33,7 @@ INSERT INTO public.group (id, group_name) VALUES (5, 'Joondu 6.-9. klass');
 INSERT INTO public.role_type (id, name) VALUES (1, 'Juhendaja');
 INSERT INTO public.role_type (id, name) VALUES (2, 'Tantsija');
 INSERT INTO public.role_type (id, name) VALUES (3, 'Muu kasutaja');
-INSERT INTO public.role_type (id, name) VALUES (4, 'Rhvrte vastutav');
+INSERT INTO public.role_type (id, name) VALUES (4, 'Rahvariiete haldur');
 INSERT INTO public.role_type (id, name) VALUES (5, 'Admin');
 
 INSERT INTO public.role_in_group (id, role_type_id, group_id, user_id) VALUES (DEFAULT, 1, 2, 1);

@@ -1,0 +1,47 @@
+package ee.bcs.folkcostumes.validation;
+
+import ee.bcs.folkcostumes.infrastructure.exception.DataNotFoundException;
+import ee.bcs.folkcostumes.userManagement.group.Group;
+import ee.bcs.folkcostumes.userManagement.user.User;
+import org.springframework.stereotype.Service;
+
+
+import java.util.Optional;
+
+@Service
+public class ValidationService {
+
+    public static final Integer USER_NOT_EXISTS_ERROR_CODE = 1;
+    public static final Integer GROUP_NOT_EXISTS_ERROR_CODE = 2;
+    public static final Integer WRONG_PASSWORD = 3;
+    public static final String EI_EKSISTEERI = "ei eksisteeri.";
+
+    public void userExists(Optional<User> user, String username) {
+        if (user.isEmpty()) {
+            String message = "Kasutajat " + username + EI_EKSISTEERI;
+            throw new DataNotFoundException(message, USER_NOT_EXISTS_ERROR_CODE);
+        }
+    }
+
+    public void passwordIsCorrect(User user, String password) {
+        if (!user.getPassword().equals(password)) {
+            String message = "Sisestasid: " +password+"\n See ei ole õige salasõna!";
+            throw new DataNotFoundException(message, WRONG_PASSWORD);
+        }
+    }
+
+
+    public void groupExists(Optional<Group> group, String groupName) {
+        if (group.isEmpty()) {
+            String message = "Gruppi " + groupName + EI_EKSISTEERI;
+            throw new DataNotFoundException(message, GROUP_NOT_EXISTS_ERROR_CODE);
+        }
+    }
+
+
+
+
+
+
+
+}

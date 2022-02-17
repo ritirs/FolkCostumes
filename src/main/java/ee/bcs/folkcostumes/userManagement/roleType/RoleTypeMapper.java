@@ -10,4 +10,6 @@ public interface RoleTypeMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateRoleTypeFromRoleTypeDto(RoleTypeDto roleTypeDto, @MappingTarget RoleType roleType);
+
+    RoleType newNameToRoleType(String name);
 }

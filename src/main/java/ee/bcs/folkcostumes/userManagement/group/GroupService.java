@@ -16,24 +16,26 @@ public class GroupService {
 
 
     public GroupDto addNewGroup(String newGroupName) {
-        Group newGroup = new Group();
-        newGroup.setGroupName(newGroupName);
-        groupRepository.save(newGroup);
-        return groupMapper.groupToGroupDto(newGroup);
+        Group group = groupMapper.newGroupNameToGroup(newGroupName);
+        groupRepository.save(group);
+        return groupMapper.groupToGroupDto(group);
 
     }
 
     public String updateGroup(String oldGroupName, String newName) {
-        GroupDto oldGroupDto = getGroupByName(oldGroupName);
-        Group group = groupMapper.groupDtoToGroup(oldGroupDto);
+        Group group = getGroupByName(oldGroupName);
         group.setGroupName(newName);
         groupRepository.save(group);
         return "\"" + oldGroupName + "\"" + " muudetud uueks nimetuseks \"" + newName + "\"";
     }
 
-    public GroupDto getGroupByName(String groupName) {
-        Group group = groupRepository.findByGroupName(groupName);
-        return groupMapper.groupToGroupDto(group);
+    public Group getGroupByName(String groupName) {
+        return groupRepository.findByGroupName(groupName);
+    }
+
+    public GroupDto getGroupDtoByName(String groupName) {
+        Group byGroupName = groupRepository.findByGroupName(groupName);
+        return groupMapper.groupToGroupDto(byGroupName);
     }
 
     public List<String> getAllGroupNames() {

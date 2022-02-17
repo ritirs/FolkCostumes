@@ -17,20 +17,22 @@ public class RoleTypeService {
 
 
     public RoleTypeDto addNewRoleType(String newRoleTypeName) {
-        RoleType newRoleType = new RoleType();
-        newRoleType.getId();
-        newRoleType.setName(newRoleTypeName);
+        RoleType newRoleType = roleTypeMapper.newNameToRoleType(newRoleTypeName);
         roleTypeRepository.save(newRoleType);
         return roleTypeMapper.roleTypeToRoleTypeDto(newRoleType);
     }
 
-    public RoleTypeDto getByRoleTypeName(String roleTypeName) {
+    public RoleTypeDto getRoleTypeDtoByName(String roleTypeName) {
         RoleType roleType = roleTypeRepository.findByName(roleTypeName);
         return roleTypeMapper.roleTypeToRoleTypeDto(roleType);
     }
 
+    public RoleType getRoleTypeByName(String roleTypename) {
+        return roleTypeRepository.findByName(roleTypename);
+    }
+
     public String updateRoleTypeName(String oldRoleTypeName, String newRoleTypeName) {
-        RoleTypeDto oldRoleTypeDto = getByRoleTypeName(oldRoleTypeName);
+        RoleTypeDto oldRoleTypeDto = getRoleTypeDtoByName(oldRoleTypeName);
         RoleType roleType = roleTypeMapper.roleTypeDtoToRoleType(oldRoleTypeDto);
         roleType.setName(newRoleTypeName);
         roleTypeRepository.save(roleType);

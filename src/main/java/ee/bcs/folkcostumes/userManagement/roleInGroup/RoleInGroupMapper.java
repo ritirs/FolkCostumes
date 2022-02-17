@@ -9,6 +9,7 @@ public interface RoleInGroupMapper {
     RoleInGroup roleInGroupDtoToRoleInGroup(RoleInGroupDto roleInGroupDto);
 
     RoleInGroupDto roleInGroupToRoleInGroupDto(RoleInGroup roleInGroup);
+
    List<RoleInGroupDto> roleInGroupToRoleInGroupDtos(List<RoleInGroup> roleInGroup);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

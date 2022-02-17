@@ -10,6 +10,8 @@ public interface GroupMapper {
 
     GroupDto groupToGroupDto(Group group);
 
+    Group newGroupNameToGroup (String groupName);
+
     List<GroupDto> groupToGroupDto(List<Group> group);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

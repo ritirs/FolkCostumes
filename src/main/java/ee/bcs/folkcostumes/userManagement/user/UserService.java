@@ -42,7 +42,9 @@ public class UserService {
     public User getValidUserName(String userName) {
         User userByUserName = userRepository.findByUsername(userName);
         validationService.userExists(Optional.ofNullable(userByUserName), userName);
-        return null;
+        return userByUserName;
     }
+
+
 
 }

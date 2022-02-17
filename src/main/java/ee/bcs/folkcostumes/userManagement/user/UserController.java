@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping("/find/by/name")
-    public Integer findUserByName(@RequestParam String firstName, @RequestParam String lastName) {
+    public UserDto findUserByName(@RequestParam String firstName, @RequestParam String lastName) {
         ContactDto contactDto = contactService.getContactDtoByName(firstName, lastName);
         return contactDto.getUser();
     }

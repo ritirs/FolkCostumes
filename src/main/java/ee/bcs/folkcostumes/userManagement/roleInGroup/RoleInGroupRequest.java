@@ -8,6 +8,6 @@ import lombok.Data;
 public class RoleInGroupRequest {
     private String firstname;
     private String lastname;
-    private final RoleTypeDto roleType;
-    private final GroupDto group;
+    private String roleType;
+    private String group;
 }

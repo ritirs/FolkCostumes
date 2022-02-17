@@ -11,7 +11,6 @@ public class UserService {
 
     @Resource
     private UserRepository userRepository;
-    private String username;
 
     public User addNewUser(String username) {
         User newUser = new User();
@@ -20,10 +19,15 @@ public class UserService {
         return newUser;
     }
 
-    public UserDto getUsernameById(Integer userId) {
+    public UserDto getUserById(Integer userId) {
         User byId = userRepository.getById(userId);
         UserDto userDto = userMapper.userToUserDto(byId);
         return userDto;
+    }
+
+    public UserDto getUserByUserName(String userName) {
+        User byUserName = userRepository.findByUsername(userName);
+        return userMapper.userToUserDto(byUserName);
     }
 
 }

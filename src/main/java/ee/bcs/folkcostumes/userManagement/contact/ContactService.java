@@ -20,24 +20,14 @@ public class ContactService {
     @Resource
     private UserService userService;
 
-//    public void addNewUser(UserDataRequest userDataRequest) {
-//        String newUserName = userDataRequest.getUsername();
-//
-//        Contact contact = contactMapper.userDataRequestToContact(userDataRequest);
-//        contactRepository.save(contact);
-//
-//    }
-
     public ContactDto addNewContact(UserDataRequest userDataRequest, User newUser) {
-        Contact newContact = new Contact();
-        newContact.setFirstname(userDataRequest.getFirstname());
-        newContact.setLastname(userDataRequest.getLastname());
-        newContact.setEmail(userDataRequest.getEmail());
-        newContact.setTelephone(userDataRequest.getTelephone());
-        newContact.setBirthDate(userDataRequest.getBirthDate());
-        newContact.setAddress(userDataRequest.getAddress());
+        Contact newContact = contactMapper.userDataRequestToContact(userDataRequest);
         newContact.setUser(newUser);
         contactRepository.save(newContact);
         return contactMapper.contactToContactDto(newContact);
+    }
+
+    public Integer getUserIdByName(String firstName, String lastName) {
+        return contactRepository.findByName(firstName, lastName);
     }
 }

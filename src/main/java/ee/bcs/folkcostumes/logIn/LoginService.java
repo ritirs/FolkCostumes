@@ -30,19 +30,19 @@ public class LoginService {
     @Resource
     RoleInGroupService roleInGroupService;
 
-    public LoginResponse login(String userName, String password) {
-
-        User user = userService.getUserByUserName(userName);
-        validationService.userExists(Optional.ofNullable(user), userName);
-        validationService.passwordIsCorrect(user, password);
-
-        Integer userId = user.getId();
-        String firstName = contactService.getFirstNameById(userId);
-        String lastName = contactService.getLastNameById(userId);
-        List<RoleInGroupDto> rolesInGroup = roleInGroupService.rolesInGroups(userId);
-
-        LoginResponse response;
-        response = new LoginResponse(userId, firstName, lastName, rolesInGroup);
-        return response;
-    }
+//    public LoginResponse login(String userName, String password) {
+//
+//        User user = userService.getUserByUserName(userName);
+//        validationService.userExists(Optional.ofNullable(user), userName);
+//        validationService.passwordIsCorrect(user, password);
+//
+//        Integer userId = user.getId();
+//        String firstName = contactService.getFirstNameById(userId);
+//        String lastName = contactService.getLastNameById(userId);
+//        List<RoleInGroupDto> rolesInGroup = roleInGroupService.rolesInGroups(userId);
+//
+//        LoginResponse response;
+//        response = new LoginResponse(userId, firstName, lastName, rolesInGroup);
+////        return response;
+//    }
 }

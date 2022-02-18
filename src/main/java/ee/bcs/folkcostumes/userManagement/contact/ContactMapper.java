@@ -3,6 +3,8 @@ package ee.bcs.folkcostumes.userManagement.contact;
 import ee.bcs.folkcostumes.userManagement.user.UserDataRequest;
 import org.mapstruct.*;
 
+import java.util.List;
+
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ContactMapper {
     Contact contactDtoToContact(ContactDto contactDto);
@@ -16,7 +18,10 @@ public interface ContactMapper {
 
     Contact contactResponseToContact(ContactResponse contactResponse);
 
+    @Mapping(target = "userId", source = "user.id")
     ContactResponse contactToContactResponse(Contact contact);
+
+    List<ContactResponse> contactsToContactResponses(List<Contact> contacts);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateContactFromContactResponse(ContactResponse contactResponse, @MappingTarget Contact contact);

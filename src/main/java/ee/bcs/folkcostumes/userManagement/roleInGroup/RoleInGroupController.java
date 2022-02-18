@@ -14,9 +14,9 @@ public class RoleInGroupController {
     @Resource
     private RoleInGroupService roleInGroupService;
 
-    @PostMapping("/add/new")
-    public RoleInGroupDto addNewRoleToUser(@RequestBody RoleInGroupRequest request) {
-        return roleInGroupService.addNewRoleToUser(request);
-    }
+//    @PostMapping("/add/new")
+//    public RoleInGroupDto addNewRoleToUser(@RequestBody RoleInGroupRequest request) {
+//        return roleInGroupService.addNewRoleToUser(request);
+//    }
 
 }

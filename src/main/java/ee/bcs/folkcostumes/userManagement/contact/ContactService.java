@@ -4,6 +4,7 @@ import ee.bcs.folkcostumes.userManagement.user.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ContactService {
@@ -58,4 +59,8 @@ public class ContactService {
         return byUser_id.getLastname();
     }
 
+    public List<ContactResponse> getAllContacts() {
+        List<Contact> allContacts = contactRepository.findAll();
+        return contactMapper.contactsToContactResponses(allContacts);
+    }
 }

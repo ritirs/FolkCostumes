@@ -29,41 +29,29 @@ public class RoleInGroupService {
     @Resource
     private RoleTypeService roleTypeService;
 
-    public RoleInGroupDto addNewRoleToUser(RoleInGroupRequest request) {
-        RoleInGroup roleInGroup = new RoleInGroup();
-        Group groupByName = groupService.getGroupByName(request.getGroup());
-        User user = contactService.getUserByFirstLastNames(request.getFirstname(), request.getLastname());
-        RoleType roleType = roleTypeService.getRoleTypeByName(request.getRoleType());
-        roleInGroup.setGroup(groupByName);
-        roleInGroup.setUser(user);
-        roleInGroup.setRoleType(roleType);
-        return roleInGroupMapper.roleInGroupToRoleInGroupDto(roleInGroup);
-
-//        RoleInGroupDto newRoleInGroupDto = new RoleInGroupDto(roleType, group, user);
+//    public RoleInGroupDto addNewRoleToUser(RoleInGroupRequest request) {
+//        RoleInGroup roleInGroup = new RoleInGroup();
 //        Group groupByName = groupService.getGroupByName(request.getGroup());
-//        RoleType roleType = roleTypeService.getRoleTypeByName(request.getRoleType());
-
-//        GroupDto group = groupService.getGroupDtoByName(request.getGroup());
-//        RoleTypeDto roleType = roleTypeService.getRoleTypeDtoByName(request.getRoleType());
-//        UserDto user = contactService.getUserDtoByFirstLastNames(request.getFirstname(), request.getLastname());
-//        RoleInGroupDto roleInGroupDto = new RoleInGroupDto(group,roleType, user);
-
 //        User user = contactService.getUserByFirstLastNames(request.getFirstname(), request.getLastname());
+//        RoleType roleType = roleTypeService.getRoleTypeByName(request.getRoleType());
+//        roleInGroup.setGroup(groupByName);
+//        roleInGroup.setUser(user);
+//        roleInGroup.setRoleType(roleType);
+//        return roleInGroupMapper.roleInGroupToRoleInGroupDto(roleInGroup);
+//    }
+//    public List<RoleInGroupDto> rolesInGroups(Integer userId) {
+//        List<RoleInGroup> rolesInGroup = roleInGroupRepository.finduserRolesByUser_Id(userId);
+//        return roleInGroupMapper.roleInGroupToRoleInGroupDtos(rolesInGroup);
+//    }
 
-
-//        RoleInGroup newRoleInGroup = new RoleInGroup();
-//        newRoleInGroup.setGroup(groupByName);
-//        newRoleInGroup.setUser(user);
-//        newRoleInGroup.setRoleType(roleType);
-//        roleInGroupRepository.save(newRoleInGroup);
-//        return roleInGroupMapper.roleInGroupToRoleInGroupDto(newRoleInGroup);
-
+    public List<RoleInGroup> usersAndRolesInGroup(String groupName) {
+        return roleInGroupRepository.findByGroup_GroupName(groupName);
     }
 
-
-
-    public List<RoleInGroupDto> rolesInGroups(Integer userId) {
-        List<RoleInGroup> rolesInGroup = roleInGroupRepository.findByUser_Id(userId);
-        return roleInGroupMapper.roleInGroupToRoleInGroupDtos(rolesInGroup);
+    // kas user on grupi liige
+    public boolean isUserInGroup(Integer userId, String groupName) {
+        Integer groupId = (groupService.getGroupByName(groupName).getId());
+        return roleInGroupRepository.existsByGroup_GroupName(groupName);
     }
+
 }

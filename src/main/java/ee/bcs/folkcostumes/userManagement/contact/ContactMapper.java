@@ -1,6 +1,6 @@
 package ee.bcs.folkcostumes.userManagement.contact;
 
-import ee.bcs.folkcostumes.userManagement.user.UserDataRequest;
+import ee.bcs.folkcostumes.userManagement.user.UserContactDataRequest;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -10,17 +10,17 @@ public interface ContactMapper {
     Contact contactDtoToContact(ContactDto contactDto);
 
     ContactDto contactToContactDto(Contact contact);
+    List<ContactDto> contactsToContactDtos(List<Contact> contacts);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateContactFromContactDto(ContactDto contactDto, @MappingTarget Contact contact);
 
-    Contact userDataRequestToContact(UserDataRequest userDataRequest);
+    Contact userDataRequestToContact(UserContactDataRequest userDataRequest);
 
     Contact contactResponseToContact(ContactResponse contactResponse);
 
-    @Mapping(target = "userId", source = "user.id")
+//    @Mapping(target = "userId", source = "user.id")
     ContactResponse contactToContactResponse(Contact contact);
-
     List<ContactResponse> contactsToContactResponses(List<Contact> contacts);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

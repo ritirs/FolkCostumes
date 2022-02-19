@@ -6,6 +6,7 @@ import ee.bcs.folkcostumes.userManagement.user.User;
 import org.springframework.stereotype.Service;
 
 
+import javax.annotation.Resource;
 import java.util.Optional;
 
 @Service
@@ -14,6 +15,7 @@ public class ValidationService {
     public static final Integer USER_NOT_EXISTS_ERROR_CODE = 1;
     public static final Integer GROUP_NOT_EXISTS_ERROR_CODE = 2;
     public static final Integer WRONG_PASSWORD = 3;
+    public static final Integer ALREADY_EXISTING_USERNAME = 4;
     public static final String EI_EKSISTEERI = "ei eksisteeri.";
 
     public void userExists(Optional<User> user, String username) {
@@ -30,11 +32,17 @@ public class ValidationService {
         }
     }
 
-
     public void groupExists(Optional<Group> group, String groupName) {
         if (group.isEmpty()) {
             String message = "Gruppi " + groupName + EI_EKSISTEERI;
             throw new DataNotFoundException(message, GROUP_NOT_EXISTS_ERROR_CODE);
+        }
+    }
+
+    public void UserNameAlreadyExists(boolean userNameExists) {
+        if (userNameExists) {
+            String message = "Selline kasutajanimi on juba olemas!";
+            throw new DataNotFoundException(message, ALREADY_EXISTING_USERNAME);
         }
     }
 

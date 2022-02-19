@@ -39,13 +39,14 @@ public class RoleInGroupService {
 //        roleInGroup.setRoleType(roleType);
 //        return roleInGroupMapper.roleInGroupToRoleInGroupDto(roleInGroup);
 //    }
-//    public List<RoleInGroupDto> rolesInGroups(Integer userId) {
-//        List<RoleInGroup> rolesInGroup = roleInGroupRepository.finduserRolesByUser_Id(userId);
-//        return roleInGroupMapper.roleInGroupToRoleInGroupDtos(rolesInGroup);
-//    }
+    public List<RoleInGroupDto> rolesInGroups(Integer userId) {
+        List<RoleInGroup> rolesInGroup = roleInGroupRepository.findUserRolesInGroupsByUser_Id(userId);
+        return roleInGroupMapper.roleInGroupToRoleInGroupDtos(rolesInGroup);
+    }
 
-    public List<RoleInGroup> usersAndRolesInGroup(String groupName) {
-        return roleInGroupRepository.findByGroup_GroupName(groupName);
+    public List<RoleInGroupDto> usersAndRolesInGroup(String groupName) {
+        List<RoleInGroup> usersRolesInGroup = roleInGroupRepository.findByGroup_GroupName(groupName);
+        return roleInGroupMapper.roleInGroupToRoleInGroupDtos(usersRolesInGroup);
     }
 
     // kas user on grupi liige

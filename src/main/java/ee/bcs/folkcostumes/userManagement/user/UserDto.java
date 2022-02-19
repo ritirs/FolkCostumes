@@ -10,3 +10,4 @@ public class UserDto implements Serializable {
     private final String username;
     private final String password;
 }
+

@@ -15,32 +15,16 @@ public class ContactService {
     @Resource
     private ContactRepository contactRepository;
 
-    @Resource
-    private UserService userService;
 
-    @Resource
-    private UserMapper userMapper;
-
-    public ContactDto addNewContact(UserDataRequest userDataRequest, UserDto newUser) {
+    public void addNewContact(UserContactDataRequest userDataRequest, User newUser) {
         Contact newContact = contactMapper.userDataRequestToContact(userDataRequest);
-        newContact.setUser(userMapper.userDtoToUser(newUser));
+        newContact.setUser(newUser);
         contactRepository.save(newContact);
-        return contactMapper.contactToContactDto(newContact);
     }
 
     public ContactDto getContactDtoByName(String firstName, String lastName) {
         Contact contact = contactRepository.findByFirstnameAndLastname(firstName, lastName);
         return contactMapper.contactToContactDto(contact);
-    }
-
-    public User getUserByFirstLastNames (String firstName, String lastName) {
-        Contact contact = contactRepository.findByFirstnameAndLastname(firstName, lastName);
-        return contact.getUser();
-    }
-
-    public UserDto getUserDtoByFirstLastNames (String firstName, String lastName) {
-        Contact contact = contactRepository.findByFirstnameAndLastname(firstName, lastName);
-        return userMapper.userToUserDto(contact.getUser());
     }
 
     public ContactDto getContactDtoByUserId(Integer userId) {
@@ -62,5 +46,15 @@ public class ContactService {
     public List<ContactResponse> getAllContacts() {
         List<Contact> allContacts = contactRepository.findAll();
         return contactMapper.contactsToContactResponses(allContacts);
+    }
+
+    public List<ContactDto> getAllContactDtos() {
+        List<Contact> allContacts = contactRepository.findAll();
+        return contactMapper.contactsToContactDtos(allContacts);
+    }
+
+    public User getUserDtoByNames(String firstName, String lastName) {
+        Contact contact = contactRepository.findByFirstnameAndLastname(firstName, lastName);
+        return contact.getUser();
     }
 }

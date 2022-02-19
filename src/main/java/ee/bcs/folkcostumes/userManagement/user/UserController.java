@@ -18,15 +18,35 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/add/new")
-    public ContactDto addNewUser(@RequestBody UserDataRequest userDataRequest) {
-        UserDto newUser = userService.addNewUser(userDataRequest);
-        return contactService.addNewContact(userDataRequest, newUser);
+    public String addNewUser(@RequestBody UserRequest userRequest) {
+        userService.addNewUser(userRequest);
+        return "Uus kasutaja salvestatud.";
     }
 
-    @PostMapping("/find/by/name")
-    public UserDto findUserByName(@RequestParam String firstName, @RequestParam String lastName) {
+    @PostMapping("/update/password")
+    public String updateUserPassword(@RequestParam String userName, @RequestParam String newPassword) {
+        return userService.updateUserPassword(userName, newPassword);
+    }
+
+    @PostMapping("/update/username")
+    public String updateUserName(@RequestParam String userName, @RequestParam String newUserName) {
+        return userService.updateUserName(userName, newUserName);
+    }
+
+    @PostMapping("/add/user/with/contacts")
+    public String addUserWithContacts(@RequestBody UserContactDataRequest userContactDataRequest) {
+        userService.addUserWithContacts(userContactDataRequest);
+        return "Uus kasutaja salvestatud.";
+    }
+
+    @GetMapping("/find/by/name")
+    public UserDto findUserByNames(@RequestParam String firstName, @RequestParam String lastName) {
         ContactDto contactDto = contactService.getContactDtoByName(firstName, lastName);
         return contactDto.getUser();
     }
 
+//    @GetMapping("/find/user/by/username")
+//    public UserDto findUserByUsername(@RequestParam String userName) {
+//        return userService.getUserByUserName(userName);
+//    }
 }

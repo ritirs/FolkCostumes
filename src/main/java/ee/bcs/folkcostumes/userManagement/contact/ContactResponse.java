@@ -14,5 +14,5 @@ public class ContactResponse implements Serializable {
     private String telephone;
     private LocalDate birthDate;
     private String address;
-    private Integer userId;
+//    private Integer userId;
 }

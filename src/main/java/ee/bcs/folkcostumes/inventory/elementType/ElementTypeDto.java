@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class ElementTypeRequest implements Serializable {
+public class ElementTypeDto implements Serializable {
     private final Integer userId;
     private final Integer roleId;
     private final String elementType;

@@ -1,56 +1,81 @@
-//package ee.bcs.folkcostumes.inventory;
-//
-//import ee.bcs.folkcostumes.inventory.costume.CostumeDto;
-//import ee.bcs.folkcostumes.inventory.costume.CostumeService;
-//import ee.bcs.folkcostumes.inventory.elementType.ElementTypeRequest;
-//import ee.bcs.folkcostumes.inventory.elementType.ElementTypeService;
-//import org.springframework.web.bind.annotation.*;
-//
-//import javax.annotation.Resource;
-//import java.util.List;
-//
-////    TODO:
-////    1. Admin saab lisada süsteemi nimekirja Element-type ja Costume repositooriumitesse
-////    2. saab lisada Elementi, määrata sellele Element-type
-////    3. saab lisada Costume-element - määrata sellele Costume ja Element-type seosed
-////    4. Saab teha väljavõtet ja parandusi kõikidest gruppides: Element-type, Costume, Element, Element-in-costume
-//
-//
-//@RestController
-//@RequestMapping("/costume")
-//public class CostumeController {
-//
-//    @Resource private CostumeService costumeService;
-//    @Resource private ElementTypeService elementTypeService;
-//
-//    @PostMapping("/add/new/element/type")
-//    public ElementTypeRequest addNewElementType(@RequestBody ElementTypeRequest request) {
-//        ElementTypeRequest elementTypeRequest = elementTypeService.addNewElementType(request);
-//        return elementTypeRequest;
-//    }
-//
-//    @GetMapping("/all/element/types")
-//    public List<ElementTypeRequest> findAllElementTypes() {
-//        List<ElementTypeRequest> elementTypeRequests = elementTypeService.findAllElementTypes();
-//        return elementTypeRequests;
-//    }
-//
-//    @PostMapping ("/find/element/type/by/name")
-//    public List<ElementTypeRequest> findElementTypesByName(@RequestParam String elementType) {
-//        List<ElementTypeRequest> elementTypeRequests = elementTypeService.findElementTypesByName(elementType);
-//        return elementTypeRequests;
-//    }
-//
-//    @PostMapping("/add/new/costume")
-//    public CostumeDto addNewCostume(@RequestBody CostumeDto request) {
-//        CostumeDto costumeDto = costumeService.addNewCostume(request);
-//        return costumeDto;
-//    }
-//
-//    @GetMapping("/all/costumes")
-//    public List<CostumeDto> findAllCostumes() {
-//        List<CostumeDto> costumeDtos = costumeService.findAllCostumes();
-//        return costumeDtos;
-//    }
-//
-//}
+package ee.bcs.folkcostumes.inventory;
+
+import ee.bcs.folkcostumes.inventory.costume.CostumeService;
+import ee.bcs.folkcostumes.inventory.element.ElementService;
+import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeRequest;
+import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeService;
+import ee.bcs.folkcostumes.inventory.elementType.ElementTypeDto;
+import ee.bcs.folkcostumes.inventory.elementType.ElementTypeService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+//    TODO:
+//    1. Admin saab lisada süsteemi nimekirja Element-type ja Costume repositooriumitesse
+//    2. saab lisada Elementi, määrata sellele Element-type
+//    3. saab lisada Costume-element - määrata sellele Costume ja Element-type seosed
+//    4. Saab teha väljavõtet ja parandusi kõikidest gruppides: Element-type, Costume, Element, Element-in-costume
+
+
+@RestController
+@RequestMapping("/costume")
+public class CostumeController {
+
+    @Resource private CostumeService costumeService;
+    @Resource private ElementTypeService elementTypeService;
+    @Resource private ElementInCostumeService elementInCostumeService;
+
+    @PostMapping("/add/list")
+    private String addCostumesList(@RequestParam List<String> costumes) {
+        costumeService.addCostumesList(costumes);
+        return "Komplektid lisatud.";
+    }
+    @PostMapping("/add/new/costume")
+    public String addNewCostume(@RequestBody String costume) {
+        costumeService.addNewCostume(costume);
+        return "Komplekt lisatud nimekirja.";
+    }
+
+    @PostMapping("/update/costume/name")
+    public String updateCostumeName(@RequestParam String oldName, @RequestParam String newName) {
+        return costumeService.updateCostumeName(oldName, newName);
+    }
+
+    @GetMapping("/get/all/costume/names")
+    public List<String> getAllCostumeNames() {
+        return costumeService.getAllCostumeNames();
+    }
+
+    @PostMapping("/add/new/element/type")
+    public String addNewElementType(@RequestParam String elementName) {
+       elementTypeService.addNewElementType(elementName);
+        return "Uus elemendi tüüp lisatud.";
+    }
+
+    @PostMapping("/add/element/type/list")
+    private String addElementTypesList(@RequestParam List<String> types) {
+        elementTypeService.addElementTypeList(types);
+        return "Elemendi tüübid lisatud lisatud.";
+    }
+
+    @PostMapping("/update/element/type/name")
+    public String updateElementTypeName(@RequestParam String oldName, @RequestParam String newName) {
+        return elementTypeService.updateElementTypeName(oldName, newName);
+    }
+
+    @GetMapping("/get/all/element/type/names")
+    public List<String> getAllElementTypes() {
+          return elementTypeService.getAllElementTypeNames ();
+    }
+
+    @GetMapping ("/find/elements/type/by/name")
+    public List<ElementInCostumeRequest> findElementsByTypeName(@RequestParam String elementType) {
+        return elementInCostumeService.getElementsByTypeName(elementType);
+    }
+
+
+
+
+
+}

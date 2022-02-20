@@ -1,6 +1,6 @@
 package ee.bcs.folkcostumes.inventory.element;
 
-import ee.bcs.folkcostumes.inventory.elementType.ElementTypeRequest;
+import ee.bcs.folkcostumes.inventory.elementType.ElementTypeDto;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Data
 public class ElementDto implements Serializable {
     private final Integer id;
-    private final ElementTypeRequest elementType;
+    private final ElementTypeDto elementType;
     private final String elementName;
     private final String description;
 }

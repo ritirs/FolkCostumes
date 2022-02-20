@@ -1,29 +1,52 @@
 package ee.bcs.folkcostumes.inventory.costume;
 
 
+import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CostumeService {
 
-    @Resource private CostumeRepository costumeRepository;
-    @Resource private CostumeMapper costumeMapper;
+    @Resource
+    private CostumeRepository costumeRepository;
+    @Resource
+    private CostumeMapper costumeMapper;
+    @Resource
+    private ValidationService validationService;
 
-    public CostumeDto addNewCostume(CostumeDto request) {
-        Costume newCostume = costumeMapper.costumeDtoToCostume(request);
+    public void addNewCostume(String name) {
+        Costume newCostume = costumeMapper.nameToCostume(name);
         costumeRepository.save(newCostume);
-        CostumeDto costumeDto = costumeMapper.costumeToCostumeDto(newCostume);
-        return costumeDto;
     }
 
-    public List<CostumeDto> findAllCostumes() {
+    public void addCostumesList(List<String> costumes) {
+        for (String costume : costumes) {
+            addNewCostume(costume);
+        }
+    }
+
+    public List<CostumeDto> getAllCostumes() {
         List<Costume> costumes = costumeRepository.findAll();
-        List<CostumeDto> costumeDtos = costumeMapper.costumesToCostumeDtos(costumes);
-        return costumeDtos;
+        return costumeMapper.costumesToCostumeDtos(costumes);
     }
 
+    public List<String> getAllCostumeNames() {
+        List<String> costumeNames = new ArrayList<>();
+        List<CostumeDto> allCostumes = getAllCostumes();
+        for (CostumeDto costume : allCostumes) {
+            costumeNames.add(costume.getName());
+        }
+        return costumeNames;
+    }
 
+    public String updateCostumeName(String oldName, String newName) {
+        validationService.costumeNameAlreadyExists(costumeRepository.existsByName(newName), newName);
+        Costume costume = costumeRepository.findByName(oldName);
+        costume.setName(newName);
+        return "Endine nimetus \"" + oldName + " asendatud uue nimetusega \"" + newName;
+    }
 }

@@ -16,5 +16,5 @@ public interface CostumeMapper {
     void updateCostumeFromCostumeDto(CostumeDto costumeDto, @MappingTarget Costume costume);
 
 
-
+    Costume nameToCostume(String name);
 }

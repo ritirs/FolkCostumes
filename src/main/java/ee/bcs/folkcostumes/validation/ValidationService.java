@@ -11,11 +11,14 @@ import java.util.Optional;
 @Service
 public class ValidationService {
 
+    public static final String EI_EKSISTEERI = "ei eksisteeri.";
+
     public static final Integer USER_NOT_EXISTS_ERROR_CODE = 1;
     public static final Integer GROUP_NOT_EXISTS_ERROR_CODE = 2;
     public static final Integer WRONG_PASSWORD = 3;
     public static final Integer ALREADY_EXISTING_USERNAME = 4;
-    public static final String EI_EKSISTEERI = "ei eksisteeri.";
+    private static final Integer ALREADY_EXISTING_COSTUMENAME = 5;
+    private static final Integer ALREADY_EXISTING_ELEMENT_TYPE_NAME = 6;
 
     public void userExists(Optional<User> user, String username) {
         if (user.isEmpty()) {
@@ -26,7 +29,7 @@ public class ValidationService {
 
     public void passwordIsCorrect(User user, String password) {
         if (!user.getPassword().equals(password)) {
-            String message = "Sisestasid: " +password+"\n See ei ole õige salasõna!";
+            String message = "Sisestasid: " + password + "\n See ei ole õige salasõna!";
             throw new DataNotFoundException(message, WRONG_PASSWORD);
         }
     }
@@ -45,10 +48,17 @@ public class ValidationService {
         }
     }
 
+    public void costumeNameAlreadyExists(boolean existsByName, String newName) {
+        if (existsByName) {
+            String message = "Nimega /" + newName + "/ komplekt on juba olemas";
+            throw new DataNotFoundException(message, ALREADY_EXISTING_COSTUMENAME);
+        }
+    }
 
-
-
-
-
-
+    public void elementTypeNameAlreadyExists(boolean existsByElementType, String newName) {
+        if (existsByElementType) {
+            String message = "Nimega /" + newName + "/ elemendi tüüp on juba olemas";
+            throw new DataNotFoundException(message, ALREADY_EXISTING_ELEMENT_TYPE_NAME);
+        }
+    }
 }

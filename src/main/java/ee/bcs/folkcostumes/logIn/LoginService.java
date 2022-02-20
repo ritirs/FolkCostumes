@@ -27,17 +27,17 @@ public class LoginService {
     @Resource
     RoleInGroupService roleInGroupService;
 
-//    public LoginResponse login(String userName, String password) {
-//
-//        User user = userService.getValidUserName (userName);
-//        validationService.userExists(Optional.ofNullable(user), userName);
-//        validationService.passwordIsCorrect(user, password);
-//
-//        Integer userId = user.getId();
-//        String firstName = contactService.getFirstNameById(userId);
-//        String lastName = contactService.getLastNameById(userId);
-//        List<RoleInGroupDto> UserRolesInGroups = userService.getRolesInGroups(userId);
-//        LoginResponse response = new LoginResponse(userId, firstName, lastName, UserRolesInGroups);
-//        return response;
-//    }
+    public LoginResponse login(String userName, String password) {
+
+        User user = userService.getValidUserName (userName);
+        validationService.userExists(Optional.ofNullable(user), userName);
+        validationService.passwordIsCorrect(user, password);
+
+        Integer userId = user.getId();
+        String firstname = contactService.getFirstNameById(userId);
+        String lastname = contactService.getLastNameById(userId);
+        List<RoleInGroupDto> UserRolesInGroups = roleInGroupService.rolesInGroups(userId);
+        LoginResponse loginResponse = new LoginResponse(userId, firstname, lastname, UserRolesInGroups);
+        return loginResponse;
+    }
 }

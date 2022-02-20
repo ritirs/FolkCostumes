@@ -1,6 +1,7 @@
 package ee.bcs.folkcostumes.userManagement.user;
 
 import ee.bcs.folkcostumes.userManagement.contact.ContactDto;
+import ee.bcs.folkcostumes.userManagement.contact.ContactResponse;
 import ee.bcs.folkcostumes.userManagement.contact.ContactService;
 import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroupDto;
 import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroupService;
@@ -44,61 +45,76 @@ public class UserService {
     public String updateUserName(String userName, String newUserName) {
         validationService.UserNameAlreadyExists(userRepository.existsByUsername(newUserName));
         User user = userRepository.findByUsername(userName);
-        user.setUsername (newUserName);
+        user.setUsername(newUserName);
         userRepository.save(user);
         return "Kasutajanimi " + userName + " muudetud. Uus kasutajanimi on " + newUserName;
     }
 
-    public UserDto getUserById(Integer userId) {
-        User byId = userRepository.getById(userId);
-        return userMapper.userToUserDto(byId);
-    }
 
-    public UserDto getUserDtoByUserName(String userName) {
-        return userMapper.userToUserDto(userRepository.findByUsername(userName));
-    }
-
-    public User getUserByNames(String firstName, String lastName) {
-        return contactService.getUserDtoByNames(firstName, lastName);
-    }
-
-    public User getValidUserName(String userName) {
-        return userRepository.findByUsername(userName);
-    }
-
-    public boolean UserNameExists(String userName) {
-        return userRepository.existsByUsername(userName);
+    public User getValidUserName(String username) {
+        return userRepository.findByUsername(username);
     }
 
     public void addUserWithContacts(UserContactDataRequest userContactDataRequest) {
+        validationService.UserNameAlreadyExists(userRepository.existsByUsername(userContactDataRequest.getUsername()));
         UserRequest userRequest = new UserRequest();
-        userRequest.setUsername(userContactDataRequest.getUserName());
+        userRequest.setUsername(userContactDataRequest.getUsername());
         userRequest.setPassword(userContactDataRequest.getPassword());
         addNewUser(userRequest);
-        String userName = userContactDataRequest.getUserName();
-        User user = userMapper.userDtoToUser(getUserDtoByUserName(userName));
+        String username = userContactDataRequest.getUsername();
+        User user = userRepository.findByUsername(username);
         contactService.addNewContact(userContactDataRequest, user);
-
     }
 
     public List<UserRoleInGroupResponse> getRolesInAllGroupsByUser(Integer userId) {
+        ContactDto contactdto = contactService.getContactDtoByUserId(userId);
         List<RoleInGroupDto> roles = roleInGroupService.rolesInGroups(userId);
-        List<ContactDto> allContactDtos = contactService.getAllContactDtos();
-        List<UserRoleInGroupResponse> rolesInGroupsByUser = new ArrayList<>();
+        List<UserRoleInGroupResponse> rolesListInGroupsByUser = new ArrayList<>();
         for (RoleInGroupDto role : roles) {
-            for (ContactDto contact : allContactDtos) {
-                if (contact.getUser().getId() == role.getUser().getId()) {
-                    UserRoleInGroupResponse userRoles = userMapper.contactDtoToUserRoles(contact);
-                    userRoles.setGroupName(role.getGroup().getGroupName());
-                    userRoles.setRoleName(role.getRoleType().getName());
-                }
+            UserRoleInGroupResponse userRolesInAllGroups = userMapper.contactDtoToUserRoles(contactdto);
+            userRolesInAllGroups.setGroupName(role.getGroup().getGroupName());
+            userRolesInAllGroups.setRoleName(role.getRoleType().getName());
+            rolesListInGroupsByUser.add(userRolesInAllGroups);
+        }
+        return rolesListInGroupsByUser;
+    }
+
+    public ContactResponse getUserContact(User user) {
+        return contactService.getUserContact(user);
+    }
+
+    public List<ContactResponse> getContactsByGroupName(String groupName) {
+        List<ContactResponse> allContacts = contactService.getAllContacts();
+        List<ContactResponse> contactsOfGroup = new ArrayList<>();
+        for (ContactResponse contact : allContacts) {
+            User user = contactService.getUserByNames(contact.getFirstname(), contact.getLastname());
+            if (roleInGroupService.isUserInGroup(user.getId(), groupName)) {
+                contactsOfGroup.add(contact);
             }
         }
-        return rolesInGroupsByUser;
+        return contactsOfGroup;
     }
 
-    public List<RoleInGroupDto> getUserRolesByGroup(String groupName) {
-        return roleInGroupService.usersAndRolesInGroup(groupName);
+
+
+
+    public UserPassword getUserPassword(User user) {
+        return userMapper.userToUserPassword(user);
     }
 
+    public List<UserPassword> getUsersPasswordsByGroup(String groupName) {
+        List<User> users = userRepository.findAll();
+        List<UserPassword> usersPasswords = new ArrayList<>();
+        for (User user : users) {
+            if (roleInGroupService.isUserInGroup(user.getId(), groupName)) {
+                ContactResponse contact = contactService.getUserContact(user);
+                UserPassword userPassword = userMapper.userToUserPassword(user);
+                userPassword.setGroupName(groupName);
+                userPassword.setFirstname(contact.getFirstname());
+                userPassword.setLastname(contact.getLastname());
+                usersPasswords.add(userPassword);
+            }
+        }
+        return usersPasswords;
+    }
 }

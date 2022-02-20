@@ -2,16 +2,13 @@ package ee.bcs.folkcostumes.userManagement.user;
 
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @Data
-public class UserContactDataRequest {
+public class UserPassword {
+
     private String firstname;
     private String lastname;
-    private String email;
-    private String telephone;
-    private LocalDate birthDate;
-    private String address;
+    private String groupName;
     private String username;
     private String password;
+
 }

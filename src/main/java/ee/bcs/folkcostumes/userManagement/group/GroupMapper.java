@@ -12,8 +12,6 @@ public interface GroupMapper {
 
     Group newGroupNameToGroup (String groupName);
 
-    List<GroupDto> groupToGroupDto(List<Group> group);
-
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateGroupFromGroupDto(GroupDto groupDto, @MappingTarget Group group);
 

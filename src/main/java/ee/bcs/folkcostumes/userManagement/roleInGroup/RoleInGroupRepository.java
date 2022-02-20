@@ -13,5 +13,13 @@ public interface RoleInGroupRepository extends JpaRepository<RoleInGroup, Intege
 
     boolean existsByGroup_GroupName(String groupName);
 
+    boolean existsByGroup_GroupNameAndUser_Id(String groupName, Integer id);
+
+
+
+
+
+
+
 
 }

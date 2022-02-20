@@ -23,10 +23,4 @@ public class RoleTypeController {
         return roleTypeService.updateRoleTypeName(oldRoleTypeName, newRoleTypeName);
     }
 
-    @GetMapping("/get/all/role/type/names")
-    public List<String> allRoleTypeNames() {
-        return roleTypeService.getAllRoleTypeNames();
-    }
-
-
 }

@@ -6,7 +6,6 @@ import ee.bcs.folkcostumes.userManagement.user.User;
 import org.springframework.stereotype.Service;
 
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
 @Service
@@ -32,7 +31,7 @@ public class ValidationService {
         }
     }
 
-    public void groupExists(Optional<Group> group, String groupName) {
+    public void groupAlreadyExists(Optional<Group> group, String groupName) {
         if (group.isEmpty()) {
             String message = "Gruppi " + groupName + EI_EKSISTEERI;
             throw new DataNotFoundException(message, GROUP_NOT_EXISTS_ERROR_CODE);

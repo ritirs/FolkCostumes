@@ -22,9 +22,9 @@ public class ContactService {
         contactRepository.save(newContact);
     }
 
-    public ContactDto getContactDtoByName(String firstName, String lastName) {
-        Contact contact = contactRepository.findByFirstnameAndLastname(firstName, lastName);
-        return contactMapper.contactToContactDto(contact);
+    public void updateUserContacts(ContactResponse contactResponse) {
+        Contact contact = contactRepository.findByFirstnameAndLastname(contactResponse.getFirstname(), contactResponse.getLastname());
+        contactRepository.save(contactMapper.contactResponseToContact(contactResponse));
     }
 
     public ContactDto getContactDtoByUserId(Integer userId) {
@@ -37,6 +37,7 @@ public class ContactService {
         Contact byUser_id = contactRepository.findByUser_Id(userId);
         return byUser_id.getFirstname();
     }
+
     //LoginDto jaoks
     public String getLastNameById(Integer userId) {
         Contact byUser_id = contactRepository.findByUser_Id(userId);
@@ -48,13 +49,21 @@ public class ContactService {
         return contactMapper.contactsToContactResponses(allContacts);
     }
 
+    public User getUserByNames(String firstname, String lastname) {
+        Contact contact = contactRepository.findByFirstnameAndLastname(firstname, lastname);
+        return contact.getUser();
+    }
+
+    public ContactResponse getUserContact(User user) {
+        Contact contact = contactRepository.findByUser_Id(user.getId());
+        return contactMapper.contactToContactResponse(contact);
+    }
+
+
+
     public List<ContactDto> getAllContactDtos() {
         List<Contact> allContacts = contactRepository.findAll();
         return contactMapper.contactsToContactDtos(allContacts);
     }
 
-    public User getUserDtoByNames(String firstName, String lastName) {
-        Contact contact = contactRepository.findByFirstnameAndLastname(firstName, lastName);
-        return contact.getUser();
-    }
 }

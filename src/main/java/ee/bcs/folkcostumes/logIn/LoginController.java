@@ -14,9 +14,9 @@ public class LoginController {
     @Resource
     private LoginService loginService;
 
-//    @GetMapping("/in")
-//    public LoginResponse login (@RequestParam String userName, @RequestParam String password) {
-//        return loginService.login(userName, password);
-//    }
+    @GetMapping("/in")
+    public LoginResponse login (@RequestParam String username, @RequestParam String password) {
+        return loginService.login(username, password);
+    }
 
 }

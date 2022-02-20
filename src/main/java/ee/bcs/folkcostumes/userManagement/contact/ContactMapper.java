@@ -19,7 +19,6 @@ public interface ContactMapper {
 
     Contact contactResponseToContact(ContactResponse contactResponse);
 
-//    @Mapping(target = "userId", source = "user.id")
     ContactResponse contactToContactResponse(Contact contact);
     List<ContactResponse> contactsToContactResponses(List<Contact> contacts);
 

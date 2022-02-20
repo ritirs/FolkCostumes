@@ -33,19 +33,19 @@ public class GroupService {
         return groupRepository.findByGroupName(groupName);
     }
 
-    public GroupDto getGroupDtoByName(String groupName) {
-        Group byGroupName = groupRepository.findByGroupName(groupName);
-        return groupMapper.groupToGroupDto(byGroupName);
-    }
-
     public List<String> getAllGroupNames() {
         List<Group> all = groupRepository.findAll();
-//        List<GroupDto> groupNamesDtos = groupMapper.groupToGroupDto(all);
         List<String> groupNames = new ArrayList<>();
         for (Group group : all) {
             groupNames.add(group.getGroupName());
         }
         return groupNames;
+    }
+
+
+    public GroupDto getGroupDtoByName(String groupName) {
+        Group byGroupName = groupRepository.findByGroupName(groupName);
+        return groupMapper.groupToGroupDto(byGroupName);
     }
 
 }

@@ -22,9 +22,4 @@ public class GroupController {
         return groupService.updateGroup(groupName, newName);
     }
 
-    @GetMapping("/get/all/group/names")
-    public List<String> allGroupNames() {
-        return groupService.getAllGroupNames();
-    }
-
 }

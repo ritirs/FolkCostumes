@@ -5,8 +5,8 @@
 -- Table: contact
 CREATE TABLE contact (
     id serial  NOT NULL,
-    firstname varchar(50)  NOT NULL,
-    lastname varchar(50)  NOT NULL,
+    firstName varchar(50)  NOT NULL,
+    lastName varchar(50)  NOT NULL,
     email varchar(50)  NULL,
     telephone varchar(15)  NULL,
     birth_date date  NOT NULL,

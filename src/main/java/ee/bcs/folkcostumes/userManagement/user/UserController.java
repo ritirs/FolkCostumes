@@ -1,6 +1,6 @@
 package ee.bcs.folkcostumes.userManagement.user;
 
-import ee.bcs.folkcostumes.userManagement.contact.ContactDto;
+import ee.bcs.folkcostumes.userManagement.contact.ContactResponse;
 import ee.bcs.folkcostumes.userManagement.contact.ContactService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,13 +24,13 @@ public class UserController {
     }
 
     @PostMapping("/update/password")
-    public String updateUserPassword(@RequestParam String userName, @RequestParam String newPassword) {
-        return userService.updateUserPassword(userName, newPassword);
+    public String updateUserPassword(@RequestParam String username, @RequestParam String newPassword) {
+        return userService.updateUserPassword(username, newPassword);
     }
 
     @PostMapping("/update/username")
-    public String updateUserName(@RequestParam String userName, @RequestParam String newUserName) {
-        return userService.updateUserName(userName, newUserName);
+    public String updateUserName(@RequestParam String username, @RequestParam String newUserName) {
+        return userService.updateUserName(username, newUserName);
     }
 
     @PostMapping("/add/user/with/contacts")
@@ -39,14 +39,9 @@ public class UserController {
         return "Uus kasutaja salvestatud.";
     }
 
-    @GetMapping("/find/by/name")
-    public UserDto findUserByNames(@RequestParam String firstName, @RequestParam String lastName) {
-        ContactDto contactDto = contactService.getContactDtoByName(firstName, lastName);
-        return contactDto.getUser();
+    @PostMapping("/update/user/contacts")
+    public String updateUserContacts(@RequestBody ContactResponse contactResponse) {
+        contactService.updateUserContacts(contactResponse);
+        return "Uued andmed salvestatud";
     }
-
-//    @GetMapping("/find/user/by/username")
-//    public UserDto findUserByUsername(@RequestParam String userName) {
-//        return userService.getUserByUserName(userName);
-//    }
 }

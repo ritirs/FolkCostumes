@@ -1,7 +1,10 @@
 package ee.bcs.folkcostumes.userManagement.user;
 
 import ee.bcs.folkcostumes.userManagement.contact.ContactDto;
+import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroupDto;
 import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface UserMapper {
@@ -13,8 +16,6 @@ public interface UserMapper {
     void updateUserFromUserDto(UserDto userDto, @MappingTarget User user);
 
     User userRequestToUser(UserRequest userRequest);
-
-    UserRequest userDataToUserRequest(UserContactDataRequest userContactDataRequest);
-
     UserRoleInGroupResponse contactDtoToUserRoles(ContactDto contact);
+    UserPassword userToUserPassword(User user);
 }

@@ -41,7 +41,6 @@ public class RoleTypeService {
 
     public List<String> getAllRoleTypeNames() {
         List<RoleType> allRoleTypes = roleTypeRepository.findAll();
-//        List<RoleTypeDto> roleTypeDtos = roleTypeMapper.
         List<String> roleTypeNames = new ArrayList<>();
         for (RoleType roleType : allRoleTypes) {
             roleTypeNames.add(roleType.getName());

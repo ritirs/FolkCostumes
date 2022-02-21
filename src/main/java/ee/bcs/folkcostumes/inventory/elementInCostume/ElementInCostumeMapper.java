@@ -13,5 +13,9 @@ public interface ElementInCostumeMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateElementInCostumeFromElementInCostumeDto(ElementInCostumeDto elementInCostumeDto, @MappingTarget ElementInCostume elementInCostume);
 
+    @Mapping(target = "elementName", source = "elementInCostumeDto.element.elementName")
+    @Mapping(target = "elementType", source = "elementInCostumeDto.element.elementType")
+    @Mapping(target = "costumeName", source = "costume.name")
     List<ElementInCostumeRequest> elementsInCostumeToElementCostumeRequests(List<ElementInCostume> elementsInCostumes);
+
 }

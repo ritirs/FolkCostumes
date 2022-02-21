@@ -1,6 +1,5 @@
 package ee.bcs.folkcostumes.inventory.elementType;
 
-import ee.bcs.folkcostumes.inventory.costume.CostumeDto;
 import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,8 @@ public class ElementTypeService {
 
 
     public void addNewElementType(String elementTypeName) {
-        ElementType newElementType = elementTypeMapper.nameToElementType(elementTypeName);
+        ElementType newElementType = new ElementType();
+        newElementType.setElementType(elementTypeName);
         elementTypeRepository.save(newElementType);
     }
 

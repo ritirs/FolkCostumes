@@ -2,8 +2,6 @@ package ee.bcs.folkcostumes.inventory.elementType;
 
 import org.mapstruct.*;
 
-import java.util.List;
-
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ElementTypeMapper {
 
@@ -18,5 +16,6 @@ public interface ElementTypeMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateElementTypeFromElementTypeDto(ElementTypeDto elementTypeRequest, @MappingTarget ElementType elementType);
 
-    ElementType nameToElementType(String name);
+    @Mapping(target = "elementType", source = "elementTypeName")
+    ElementType elementTypeNameToElementType(String elementTypeName);
 }

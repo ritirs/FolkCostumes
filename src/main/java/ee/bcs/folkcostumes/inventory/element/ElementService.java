@@ -14,9 +14,6 @@ public class ElementService {
     private ElementRepository elementRepository;
 
     @Resource
-    private ElementMapper elementMapper;
-
-    @Resource
     private ElementTypeService elementTypeService;
 
 

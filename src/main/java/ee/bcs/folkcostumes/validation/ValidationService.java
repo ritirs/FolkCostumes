@@ -19,6 +19,7 @@ public class ValidationService {
     public static final Integer ALREADY_EXISTING_USERNAME = 4;
     private static final Integer ALREADY_EXISTING_COSTUMENAME = 5;
     private static final Integer ALREADY_EXISTING_ELEMENT_TYPE_NAME = 6;
+    private static final Integer NO_SUCH_ELEMENT_TYPE_IN_ELEMENT_IN_COSTUMES = 7;
 
     public void userExists(Optional<User> user, String username) {
         if (user.isEmpty()) {
@@ -59,6 +60,13 @@ public class ValidationService {
         if (existsByElementType) {
             String message = "Nimega /" + newName + "/ elemendi tüüp on juba olemas";
             throw new DataNotFoundException(message, ALREADY_EXISTING_ELEMENT_TYPE_NAME);
+        }
+    }
+
+    public void elementTypeExistsInElementsInCostumes(Boolean answer, String elementTypeName) {
+        if (!answer) {
+            String message = "Elemenditüübiga /" + elementTypeName + "/ elementi ei ole kostüümielementide nimekirjas.";
+            throw new DataNotFoundException(message, NO_SUCH_ELEMENT_TYPE_IN_ELEMENT_IN_COSTUMES);
         }
     }
 }

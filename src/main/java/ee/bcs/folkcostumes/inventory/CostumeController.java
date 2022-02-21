@@ -2,8 +2,10 @@ package ee.bcs.folkcostumes.inventory;
 
 import ee.bcs.folkcostumes.inventory.costume.CostumeService;
 import ee.bcs.folkcostumes.inventory.element.ElementService;
+import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostume;
 import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeRequest;
 import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeService;
+import ee.bcs.folkcostumes.inventory.elementType.ElementType;
 import ee.bcs.folkcostumes.inventory.elementType.ElementTypeDto;
 import ee.bcs.folkcostumes.inventory.elementType.ElementTypeService;
 import org.springframework.web.bind.annotation.*;
@@ -31,32 +33,32 @@ public class CostumeController {
         costumeService.addCostumesList(costumes);
         return "Komplektid lisatud.";
     }
-    @PostMapping("/add/new/costume")
+    @PostMapping("/add/new")
     public String addNewCostume(@RequestBody String costume) {
         costumeService.addNewCostume(costume);
         return "Komplekt lisatud nimekirja.";
     }
 
-    @PostMapping("/update/costume/name")
+    @PostMapping("/update/name")
     public String updateCostumeName(@RequestParam String oldName, @RequestParam String newName) {
         return costumeService.updateCostumeName(oldName, newName);
     }
 
-    @GetMapping("/get/all/costume/names")
+    @GetMapping("/get/all/names")
     public List<String> getAllCostumeNames() {
         return costumeService.getAllCostumeNames();
     }
 
-    @PostMapping("/add/new/element/type")
+    @PostMapping("/add/element/type")
     public String addNewElementType(@RequestParam String elementName) {
        elementTypeService.addNewElementType(elementName);
         return "Uus elemendi tüüp lisatud.";
     }
 
-    @PostMapping("/add/element/type/list")
+    @PostMapping("/add/element/types")
     private String addElementTypesList(@RequestParam List<String> types) {
         elementTypeService.addElementTypeList(types);
-        return "Elemendi tüübid lisatud lisatud.";
+        return "Elemendi tüübid lisatud.";
     }
 
     @PostMapping("/update/element/type/name")
@@ -69,9 +71,14 @@ public class CostumeController {
           return elementTypeService.getAllElementTypeNames ();
     }
 
-    @GetMapping ("/find/elements/type/by/name")
-    public List<ElementInCostumeRequest> findElementsByTypeName(@RequestParam String elementType) {
-        return elementInCostumeService.getElementsByTypeName(elementType);
+    @GetMapping("/get/all/elements/in/costume")
+    public List<ElementInCostume> getAllElementsInCostume() {
+        return elementInCostumeService.getAllElementsInCostumes();
+    }
+
+    @GetMapping ("/get/elements/in/costume/by/type/name")
+    public List<ElementInCostumeRequest> findElementsByTypeName(@RequestParam String elementTypeName) {
+        return elementInCostumeService.getElementsByTypeName(elementTypeName);
     }
 
 

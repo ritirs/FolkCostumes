@@ -26,22 +26,28 @@ public class ElementInCostumeService {
     @Resource
     private ValidationService validationService;
 
+
     public List<ElementInCostume> getAllElementsInCostumes() {
         List<ElementInCostume> elementsInCostumes = elementInCostumeRepository.findAll();
 //        return elementInCostumeMapper.elementsInCostumeToElementCostumeRequests(elementsInCostumes);
         return elementsInCostumes;
     }
 
-    //    EI TÖÖTA!
-    public List<ElementInCostumeRequest> getElementsByTypeName(String elementTypeName) {
+    //    EI TÖÖTA! List<ElementInCostumeRequest>
+    public List<ElementInCostume> getElementsByTypeName(String elementTypeName) {
         ElementType type = elementService.getElementTypeByName(elementTypeName);
+//        Boolean answer = elementInCostumeRepository.existsByElement_ElementType(type);
+//        validationService.elementTypeExistsInElementsInCostumes(answer, elementTypeName);
+//        List<ElementInCostume> allElementsInCostume = elementInCostumeRepository.findAll();
         List<ElementInCostume> elementsInCostumes = elementInCostumeRepository.findByElement_ElementType(type);
-        Boolean answer = elementInCostumeRepository.existsByElement_ElementType(type);
-        validationService.elementTypeExistsInElementsInCostumes(answer, elementTypeName);
+//
+//        for () {
+//        }
+//        List<ElementInCostume> elementsInCostumes = elementInCostumeRepository.findByElement_ElementType(type);
 
 //        return elementInCostumeMapper.elementsInCostumeToElementCostumeRequests(elementsInCostumes);
 //        return elementsInCostumes;
-        return null;
+        return elementsInCostumes;
     }
 }
 

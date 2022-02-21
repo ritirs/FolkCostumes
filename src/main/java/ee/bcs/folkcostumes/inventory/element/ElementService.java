@@ -16,13 +16,22 @@ public class ElementService {
     @Resource
     private ElementTypeService elementTypeService;
 
+    @Resource
+    private ElementMapper elementMapper;
+
 
     public ElementType getElementTypeByName(String elementType) {
-        return  elementTypeService.getElementTypeByTypeName(elementType);
+        return elementTypeService.getElementTypeByTypeName(elementType);
     }
 
-    public List<Element> getElementsByTypeName(String typeName) {
-        return elementRepository.findElementsByElementType_ElementType(typeName);
+    public List<ElementDto> getAllElements() {
+        List<Element> elements = elementRepository.findAll();
+        return elementMapper.elementToElementDto(elements);
+    }
+
+    public List<ElementDto> getElementsByTypeName(String typeName) {
+        List<Element> elements = elementRepository.findElementsByElementType_ElementType(typeName);
+        return elementMapper.elementToElementDto(elements);
     }
 
 }

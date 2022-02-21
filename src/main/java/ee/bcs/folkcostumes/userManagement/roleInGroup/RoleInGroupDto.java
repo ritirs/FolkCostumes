@@ -16,3 +16,5 @@ public class RoleInGroupDto implements Serializable {
     private final UserDto user;
 
 }
+
+

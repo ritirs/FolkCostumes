@@ -1,9 +1,13 @@
 package ee.bcs.folkcostumes.inventory.element;
 
 import ee.bcs.folkcostumes.inventory.elementType.ElementType;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "element")
 public class Element {
@@ -22,35 +26,4 @@ public class Element {
     @Column(name = "description", nullable = false, length = 250)
     private String description;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getElementName() {
-        return elementName;
-    }
-
-    public void setElementName(String elementName) {
-        this.elementName = elementName;
-    }
-
-    public ElementType getElementType() {
-        return elementType;
-    }
-
-    public void setElementType(ElementType elementType) {
-        this.elementType = elementType;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

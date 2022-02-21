@@ -6,18 +6,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.lang.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ElementTypeRepository extends JpaRepository<ElementType, Integer> {
 
     boolean existsByElementType(String elementType);
 
     ElementType findByElementType(String elementType);
-
-
-
-
-
-
-
 
 }

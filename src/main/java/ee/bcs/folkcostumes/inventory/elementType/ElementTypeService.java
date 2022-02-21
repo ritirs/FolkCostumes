@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ElementTypeService {
@@ -38,11 +39,6 @@ public class ElementTypeService {
         elementTypeRepository.save(newElementType);
         return "Endine nimetus \"" + oldName + " asendatud uue nimetusega \"" + newName;
     }
-
-//    public List<ElementTypeDto> getAllElementTypes() {
-//        List<ElementType> allElementTypes = elementTypeRepository.findAll();
-//        return elementTypeMapper.elementTypesToElementTypeDtos(allElementTypes);
-//    }
 
     public List<String> getAllElementTypeNames() {
         List<String> elementTypeNames = new ArrayList<>();

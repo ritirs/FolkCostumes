@@ -9,6 +9,10 @@ public interface ElementInCostumeRepository extends JpaRepository<ElementInCostu
 
     List<ElementInCostume> findByElement_ElementType(ElementType elementType);
 
+    List<ElementInCostume> findByCostume_Name(String name);
+
+
+
     boolean existsByElement_ElementType(ElementType elementType);
 
 

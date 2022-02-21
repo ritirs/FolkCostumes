@@ -68,7 +68,7 @@ public class UserService {
 
     public List<UserRoleInGroupResponse> getRolesInAllGroupsByUser(Integer userId) {
         ContactDto contactdto = contactService.getContactDtoByUserId(userId);
-        List<RoleInGroupDto> roles = roleInGroupService.rolesInGroups(userId);
+        List<RoleInGroupDto> roles = roleInGroupService.rolesInGroupsDtosByUserId(userId);
         List<UserRoleInGroupResponse> rolesListInGroupsByUser = new ArrayList<>();
         for (RoleInGroupDto role : roles) {
             UserRoleInGroupResponse userRolesInAllGroups = userMapper.contactDtoToUserRoles(contactdto);

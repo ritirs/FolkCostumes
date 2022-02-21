@@ -63,6 +63,9 @@ public class ValidationService {
         }
     }
 
+
+
+
     public void elementTypeExistsInElementsInCostumes(Boolean answer, String elementTypeName) {
         if (!answer) {
             String message = "Elemenditüübiga /" + elementTypeName + "/ elementi ei ole kostüümielementide nimekirjas.";

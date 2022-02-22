@@ -13,23 +13,23 @@ public interface ElementInCostumeMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateElementInCostumeFromElementInCostumeDto(ElementInCostumeDto elementInCostumeDto, @MappingTarget ElementInCostume elementInCostume);
 
-    @Mapping(target = "elementName", source = "elementInCostumeDto.element.elementName")
-    @Mapping(target = "elementType", source = "elementInCostumeDto.element.elementType")
+    @Mapping(target = "elementName", source = "element.elementName")
+    @Mapping(target = "elementType", source = "element.elementType.elementType")
     @Mapping(target = "costumeName", source = "costume.name")
-    List<ElementInCostumeRequest> elementsInCostumeToElementCostumeRequests(List<ElementInCostume> elementsInCostumes);
+    ElementInCostumeRequest elementsInCostumeToElementCostumeRequests (ElementInCostume elementsInCostumes);
 
 
-//    @Mapping(source = "costumeId", target = "costume.id")
-//    @Mapping(source = "costumeName", target = "costume.name")
-//    @Mapping(source = "elementId", target = "element.id")
-//    @Mapping(source = "elementElementTypeId", target = "elementType.id")
-//    @Mapping(source = "elementElementTypeElementType", target = "elementType.elementType")
-//    @Mapping(source = "elementElementName", target = "element.elementName")
-//    @Mapping(source = "elementDescription", target = "element.description")
-//    ElementInCostume elementInCostumeDtoLargeToElementInCostume(ElementInCostumeDtoLarge elementInCostumeDtoLarge);
-//
-//    @InheritInverseConfiguration(name = "elementInCostumeDtoLargeToElementInCostume")
-//    ElementInCostumeDtoLarge elementInCostumeToElementInCostumeDtoLarge(ElementInCostume elementInCostume);
+    @Mapping(source = "costumeId", target = "costume.id")
+    @Mapping(source = "costumeName", target = "costume.name")
+    @Mapping(source = "elementId", target = "element.id")
+    @Mapping(source = "elementElementTypeId", target = "element.elementType.id")
+    @Mapping(source = "elementElementTypeElementType", target = "element.elementType.elementType")
+    @Mapping(source = "elementElementName", target = "element.elementName")
+    @Mapping(source = "elementDescription", target = "element.description")
+    ElementInCostume elementInCostumeDtoLargeToElementInCostume(ElementInCostumeDtoLarge elementInCostumeDtoLarge);
+
+    @InheritInverseConfiguration(name = "elementInCostumeDtoLargeToElementInCostume")
+    ElementInCostumeDtoLarge elementInCostumeToElementInCostumeDtoLarge(ElementInCostume elementInCostume);
 
     @InheritConfiguration(name = "elementInCostumeDtoLargeToElementInCostume")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

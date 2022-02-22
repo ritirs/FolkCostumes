@@ -14,4 +14,5 @@ public interface RoleInGroupMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateRoleInGroupFromRoleInGroupDto(RoleInGroupDto roleInGroupDto, @MappingTarget RoleInGroup roleInGroup);
+
 }

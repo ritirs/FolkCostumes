@@ -1,5 +1,6 @@
 package ee.bcs.folkcostumes.inventory.elementType;
 
+import ee.bcs.folkcostumes.inventory.element.ElementService;
 import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ElementTypeService {
@@ -18,7 +18,6 @@ public class ElementTypeService {
     private ElementTypeRepository elementTypeRepository;
     @Resource
     private ValidationService validationService;
-
 
     public void addNewElementType(String elementTypeName) {
         ElementType newElementType = new ElementType();

@@ -3,8 +3,14 @@ package ee.bcs.folkcostumes.userManagement.user;
 import ee.bcs.folkcostumes.userManagement.contact.ContactDto;
 import ee.bcs.folkcostumes.userManagement.contact.ContactResponse;
 import ee.bcs.folkcostumes.userManagement.contact.ContactService;
+import ee.bcs.folkcostumes.userManagement.group.Group;
+import ee.bcs.folkcostumes.userManagement.group.GroupService;
+import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroup;
 import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroupDto;
+import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroupRequest;
 import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroupService;
+import ee.bcs.folkcostumes.userManagement.roleType.RoleType;
+import ee.bcs.folkcostumes.userManagement.roleType.RoleTypeService;
 import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +34,12 @@ public class UserService {
 
     @Resource
     private RoleInGroupService roleInGroupService;
+
+    @Resource
+    private GroupService groupService;
+
+    @Resource
+    private RoleTypeService roleTypeService;
 
     public void addNewUser(UserRequest userRequest) {
         String userName = userRequest.getUsername();
@@ -109,12 +121,25 @@ public class UserService {
             if (roleInGroupService.isUserInGroup(user.getId(), groupName)) {
                 ContactResponse contact = contactService.getUserContact(user);
                 UserPassword userPassword = userMapper.userToUserPassword(user);
-                userPassword.setGroupName(groupName);
+//                userPassword.setGroupName(groupName);
                 userPassword.setFirstname(contact.getFirstname());
                 userPassword.setLastname(contact.getLastname());
                 usersPasswords.add(userPassword);
             }
         }
         return usersPasswords;
+    }
+
+    public void addRoleToUser(RoleInGroupRequest roleInGroupRequest) {
+        User user = contactService.getUserByNames(roleInGroupRequest.getFirstname(), roleInGroupRequest.getLastname());
+        Group group = groupService.getGroupByName(roleInGroupRequest.getGroup());
+        RoleType roleType = roleTypeService.getRoleTypeByName(roleInGroupRequest.getRoleType());
+        roleInGroupService.addNewRoleInGroup(user, roleType,group, roleInGroupRequest.getFirstname(), roleInGroupRequest.getLastname());
+
+
+
+
+
+
     }
 }

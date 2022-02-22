@@ -41,7 +41,7 @@ public class UserReportController {
     }
 
     //  admin funktsioon
-    @GetMapping("/get/user/by/names")
+    @GetMapping("/get/user/username/and/password/by/names")
     public UserPassword getUserPassword(@RequestParam String firstname, @RequestParam String lastname) {
         return userReportService.getUserPassword(firstname, lastname);
     }

@@ -15,6 +15,9 @@ public interface ElementInCostumeRepository extends JpaRepository<ElementInCostu
 
     boolean existsByElement_ElementType(ElementType elementType);
 
+    boolean existsByCostume_Name(String name);
+
+
 
 
 

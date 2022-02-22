@@ -1,6 +1,5 @@
 package ee.bcs.folkcostumes.inventory.elementType;
 
-import ee.bcs.folkcostumes.inventory.element.ElementService;
 import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +30,7 @@ public class ElementTypeService {
         }
     }
 
-    public String updateElementTypeName(String oldName, String newName) {
+    public String updateElementName(String oldName, String newName) {
         validationService.elementTypeNameAlreadyExists(elementTypeRepository.existsByElementType(newName), newName);
         ElementType newElementType = elementTypeRepository.findByElementType(oldName);
         newElementType.setElementType(newName);

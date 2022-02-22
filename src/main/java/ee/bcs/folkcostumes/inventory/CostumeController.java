@@ -2,10 +2,7 @@ package ee.bcs.folkcostumes.inventory;
 
 import ee.bcs.folkcostumes.inventory.costume.CostumeService;
 import ee.bcs.folkcostumes.inventory.element.ElementService;
-import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostume;
-import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeDtoLarge;
-import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeRequest;
-import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeService;
+import ee.bcs.folkcostumes.inventory.elementInCostume.*;
 import ee.bcs.folkcostumes.inventory.elementType.ElementTypeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,33 +29,27 @@ public class CostumeController {
     @Resource
     private ElementService elementService;
 
-    @PostMapping("/add/list")
+    @PostMapping("/costume/add/list")
     private String addCostumesList(@RequestParam List<String> costumes) {
         costumeService.addCostumesList(costumes);
-        return "Komplektid lisatud.";
+        return "Komplekti(d) lisatud.";
     }
 
-    @PostMapping("/add/new")
-    public String addNewCostume(@RequestParam String costume) {
-        costumeService.addNewCostume(costume);
-        return "Komplekt lisatud nimekirja.";
-    }
-
-    @PostMapping("/update/name")
+    @PostMapping("/costume/update/name")
     public String updateCostumeName(@RequestParam String oldName, @RequestParam String newName) {
         return costumeService.updateCostumeName(oldName, newName);
     }
 
-    @GetMapping("/get/all/names")
+    @GetMapping("/get/costume/names")
     public List<String> getAllCostumeNames() {
         return costumeService.getAllCostumeNames();
     }
 
-    @PostMapping("/add/element/type")
-    public String addNewElementType(@RequestParam String elementName) {
-        elementTypeService.addNewElementType(elementName);
-        return "Uus elemendi tüüp lisatud.";
-    }
+//    @PostMapping("/add/element/type")
+//    public String addNewElementType(@RequestParam String elementName) {
+//        elementTypeService.addNewElementType(elementName);
+//        return "Uus elemendi tüüp lisatud.";
+//    }
 
     @PostMapping("/add/element/types")
     private String addElementTypesList(@RequestParam List<String> types) {
@@ -66,9 +57,22 @@ public class CostumeController {
         return "Elemendi tüübid lisatud.";
     }
 
-    @PostMapping("/update/element/type/name")
-    public String updateElementTypeName(@RequestParam String oldName, @RequestParam String newName) {
-        return elementTypeService.updateElementTypeName(oldName, newName);
+    @PostMapping("/add/elements/new")
+    public String addNewElement(@RequestBody List<ElementInCostumeWideRequest> request) {
+        elementInCostumeService.addNewElement(request);
+        return "Uus rahvariiete element lisatud";
+    }
+
+    @PostMapping("/update/element/name")
+    public String updateElementName(@RequestParam String oldName, @RequestParam String newName) {
+        elementService.updateElementName(oldName, newName);
+        return "Rahvariiete elemendi nimi \"" + oldName + "\" asendatud uue nimega \"" + newName + "\"";
+    }
+
+    @PostMapping("/update/element/description")
+    public String updateElementDescription(@RequestParam String elementName, @RequestParam String newDescription) {
+        elementService.updateElementDescription(elementName, newDescription);
+        return "Rahvariiete elemendi kirjeldus uuendatud.";
     }
 
     @GetMapping("/get/all/element/type/names")
@@ -76,20 +80,17 @@ public class CostumeController {
         return elementTypeService.getAllElementTypeNames();
     }
 
-//    ei tööta
-//    @GetMapping("/get/all/elements/in/costume")
-//    public List<ElementInCostume> getAllElementsInCostume() {
-//        return elementInCostumeService.getAllElementsInCostumes();
-//    }
-
-    //    ei tööta
-    @GetMapping("/get/elements/in/costume/by/type/name")
+    @GetMapping("/get/elements/by/type/name")
     public List<ElementInCostumeRequest> getElementsByTypeName(@RequestParam String elementTypeName) {
         return elementInCostumeService.getElementsByTypeName(elementTypeName);
-//        List<ElementInCostumeRequest>
     }
 
-    @GetMapping("/get/all/elements")
+    @GetMapping("/get/elements/by/costume")
+    public List<String> getElementsByCostume(@RequestParam String costumeName) {
+        return elementInCostumeService.getElementsByCostume(costumeName);
+    }
+
+    @GetMapping("/get/elements/all")
     public List<ElementInCostumeDtoLarge> getAllElements() {
         return elementInCostumeService.getAllElementDetails();
     }

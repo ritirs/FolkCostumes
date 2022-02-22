@@ -49,4 +49,8 @@ public class CostumeService {
         costume.setName(newName);
         return "Endine nimetus \"" + oldName + " asendatud uue nimetusega \"" + newName;
     }
+
+    public Costume getCostumeByName(String costumeName) {
+        return costumeRepository.findByName(costumeName);
+    }
 }

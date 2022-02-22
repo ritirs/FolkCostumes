@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.locationManagement.locationLog;
+package ee.bcs.folkcostumes.locationManagement.TransactionLog;
 
 import ee.bcs.folkcostumes.inventory.element.ElementDto;
 import ee.bcs.folkcostumes.locationManagement.location.LocationDto;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
-public class LocationLogDto implements Serializable {
+public class TransactionLogDto implements Serializable {
     private final Integer id;
     private final ElementDto element;
     private final LocationDto location;

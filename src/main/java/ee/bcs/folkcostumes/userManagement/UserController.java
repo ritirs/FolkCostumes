@@ -68,7 +68,7 @@ public class UserController {
 
     @PostMapping("/group/update/name")
     public String updateGroupName(@RequestParam String groupName, @RequestParam String newName) {
-        return groupService.updateGroup(groupName, newName);
+        return groupService.updateGroupName(groupName, newName);
     }
     @PostMapping("/role/type/add/new")
     public RoleTypeDto addNewRoleType(@RequestParam String newRoletype) {

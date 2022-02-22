@@ -22,7 +22,7 @@ public class GroupService {
 
     }
 
-    public String updateGroup(String oldGroupName, String newName) {
+    public String updateGroupName(String oldGroupName, String newName) {
         Group group = getGroupByName(oldGroupName);
         group.setGroupName(newName);
         groupRepository.save(group);

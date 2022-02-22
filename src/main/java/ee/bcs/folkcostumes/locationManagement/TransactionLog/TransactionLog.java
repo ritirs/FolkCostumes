@@ -1,4 +1,4 @@
-package ee.bcs.folkcostumes.locationManagement.locationLog;
+package ee.bcs.folkcostumes.locationManagement.TransactionLog;
 
 import ee.bcs.folkcostumes.inventory.element.Element;
 import ee.bcs.folkcostumes.locationManagement.location.Location;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "location_log")
-public class LocationLog {
+public class TransactionLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

@@ -1,10 +1,14 @@
 package ee.bcs.folkcostumes.inventory.elementInCostume;
 
+import ee.bcs.folkcostumes.inventory.costume.Costume;
 import ee.bcs.folkcostumes.inventory.costume.CostumeService;
 import ee.bcs.folkcostumes.inventory.element.Element;
 import ee.bcs.folkcostumes.inventory.element.ElementDto;
 import ee.bcs.folkcostumes.inventory.element.ElementService;
 import ee.bcs.folkcostumes.inventory.elementType.ElementType;
+import ee.bcs.folkcostumes.userManagement.group.Group;
+import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroup;
+import ee.bcs.folkcostumes.userManagement.roleType.RoleType;
 import ee.bcs.folkcostumes.userManagement.user.User;
 import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -44,7 +48,6 @@ public class ElementInCostumeService {
         return elementDetails;
     }
 
-    //    EI TÖÖTA! List<ElementInCostumeRequest> Kõik seelikud
     public List<ElementInCostumeRequest> getElementsByTypeName(String elementTypeName) {
         List<ElementInCostumeRequest> elements = new ArrayList<>();
         ElementType type = elementService.getElementTypeByName(elementTypeName);
@@ -52,22 +55,46 @@ public class ElementInCostumeService {
         validationService.elementTypeExistsInElementsInCostumes(answer, elementTypeName);
         List<ElementInCostume> allElementsInCostume = elementInCostumeRepository.findAll();
         for (ElementInCostume elementInCostume : allElementsInCostume) {
-            if (elementInCostume.getElement().getElementType()==type) {
+            if (elementInCostume.getElement().getElementType() == type) {
                 elements.add(elementInCostumeMapper.elementsInCostumeToElementCostumeRequests(elementInCostume));
             }
-
         }
-
-//        List<ElementInCostume> elementsInCostumes = elementInCostumeRepository.findByElement_ElementType(type);
-//
-//        for () {
-//        }
-//        List<ElementInCostume> elementsInCostumes = elementInCostumeRepository.findByElement_ElementType(type);
-
-//        return elementInCostumeMapper.elementsInCostumeToElementCostumeRequests(elementsInCostumes);
-//        return elementsInCostumes;
         return elements;
     }
-}
 
-//        List<Element> elements = elementService.getElementsByTypeName(elementTypeName);
+    public void addNewElement(List<ElementInCostumeWideRequest> elementsRequest) {
+        for (ElementInCostumeWideRequest elementRequest : elementsRequest) {
+            Element element = elementService.addNewElement(elementRequest);
+            Costume costume = costumeService.getCostumeByName(elementRequest.getCostumeName());
+            ElementInCostume elementInCostume = new ElementInCostume();
+            elementInCostume.setElement(element);
+            elementInCostume.setCostume(costume);
+            elementInCostumeRepository.save(elementInCostume);
+        }
+
+//        public void addNewRoleInGroup(User user, RoleType roleType, Group group, String firstname, String lastname) {
+//            RoleInGroup roleInGroup = new RoleInGroup();
+//            roleInGroup.setUser(user);
+//            roleInGroup.setGroup(group);
+//            roleInGroup.setRoleType(roleType);
+//            validationService.roleExists(roleInGroupRepository.existsByRoleTypeAndGroupAndUser(roleType,group,user), firstname, lastname);
+//            roleInGroupRepository.save(roleInGroup);
+
+
+    }
+
+    public List<String> getElementsByCostume(String costumeName) {
+        Costume costume = costumeService.getCostumeByName(costumeName);
+        Boolean answer = elementInCostumeRepository.existsByCostume_Name(costumeName);
+        validationService.elementTypeExistsInElementsInCostumes(answer, costumeName);
+        List<String> elementNames = new ArrayList<>();
+        List<ElementInCostume> allElementsInCostume = elementInCostumeRepository.findAll();
+        for (ElementInCostume elementInCostume : allElementsInCostume) {
+            if (elementInCostume.getCostume() == costume) {
+                elementNames.add(elementInCostume.getElement().getElementName());
+            }
+        }
+        return elementNames;
+
+    }
+}

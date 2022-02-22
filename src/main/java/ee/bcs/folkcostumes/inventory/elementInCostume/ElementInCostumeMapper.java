@@ -34,4 +34,5 @@ public interface ElementInCostumeMapper {
     @InheritConfiguration(name = "elementInCostumeDtoLargeToElementInCostume")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateElementInCostumeFromElementInCostumeDtoLarge(ElementInCostumeDtoLarge elementInCostumeDtoLarge, @MappingTarget ElementInCostume elementInCostume);
+
 }

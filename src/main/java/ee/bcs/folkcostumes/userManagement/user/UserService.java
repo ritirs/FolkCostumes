@@ -108,8 +108,6 @@ public class UserService {
     }
 
 
-
-
     public UserPassword getUserPassword(User user) {
         return userMapper.userToUserPassword(user);
     }
@@ -134,12 +132,11 @@ public class UserService {
         User user = contactService.getUserByNames(roleInGroupRequest.getFirstname(), roleInGroupRequest.getLastname());
         Group group = groupService.getGroupByName(roleInGroupRequest.getGroup());
         RoleType roleType = roleTypeService.getRoleTypeByName(roleInGroupRequest.getRoleType());
-        roleInGroupService.addNewRoleInGroup(user, roleType,group, roleInGroupRequest.getFirstname(), roleInGroupRequest.getLastname());
+        roleInGroupService.addNewRoleInGroup(user, roleType, group, roleInGroupRequest.getFirstname(), roleInGroupRequest.getLastname());
+    }
 
-
-
-
-
-
+    public User getUserByFirstLastname(String firstName, String lastName) {
+        contactService.getUserByNames(firstName, lastName);
+        return null;
     }
 }

@@ -28,6 +28,7 @@ public class UserController {
     @Resource
     private RoleTypeService roleTypeService;
 
+//     TODO: ei pea olema request body? võiks olal eraldi välja? küsimus frondile...
     @PostMapping("/add/new")
     public String addNewUser(@RequestBody UserRequest userRequest) {
         userService.addNewUser(userRequest);

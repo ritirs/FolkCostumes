@@ -26,6 +26,7 @@ public class UserReportController {
         return userReportService.getContactsByGroupName(groupName);
     }
 
+//     TODO: muuda tagastatava info vormingut - mitte DTO vaid lihtsam, ilma id'teta vorm
     @GetMapping("/get/group/roles")
     public List<RoleInGroupDto> getRolesInGroupByGroupName(@RequestParam String groupName) {
         return userReportService.getAllUsersRolesInAGroup(groupName);
@@ -35,11 +36,13 @@ public class UserReportController {
         return userReportService.getUserContact(firstname, lastname);
     }
 
+//    TODO: kontrolli, kas on turva peal, et ei saa panna sama inimest kaks korda samasse rolli
     @GetMapping("/get/user/roles/in/groups")
     public List<UserRoleInGroupResponse> getRolesInGroupsByUser(@RequestParam String firstname, @RequestParam String lastname) {
         return userReportService.getRolesInAllGroupsByUser(firstname, lastname);
     }
 
+//    TODO: ei anna nimesid tagasi, tuleb settida
     //  admin funktsioon
     @GetMapping("/get/user/username/and/password/by/names")
     public UserPassword getUserPassword(@RequestParam String firstname, @RequestParam String lastname) {

@@ -8,7 +8,6 @@ import java.util.List;
 public interface ElementMapper {
     Element elementDtoToElement(ElementDto elementDto);
 
-
     ElementDto elementToElementDto(Element element);
     List<ElementDto> elementToElementDto(List<Element> element);
 

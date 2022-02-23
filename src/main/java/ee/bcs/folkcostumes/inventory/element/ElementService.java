@@ -61,7 +61,7 @@ public class ElementService {
         elementRepository.save(element);
     }
 
-    public Element getElementByName(String elementElementName) {
-        return elementRepository.findByElementName(elementElementName);
+    public Element getElementByName(String elementName) {
+        return elementRepository.findByElementName(elementName);
     }
 }

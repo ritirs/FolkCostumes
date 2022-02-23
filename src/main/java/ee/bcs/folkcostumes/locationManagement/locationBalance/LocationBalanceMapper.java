@@ -10,4 +10,10 @@ public interface LocationBalanceMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateLocationBalanceFromLocationBalanceDto(LocationBalanceDto locationBalanceDto, @MappingTarget LocationBalance locationBalance);
+
+    @Mapping(source = "location.location", target = "locationLocation")
+    @Mapping(source = "user.username", target = "username")
+    @Mapping(source = "element.elementName", target = "elementElementName")
+    @Mapping(source = "element.description", target = "elementDescription")
+    LocationBalanceStatement locationBalanceToLocationBalanceStatement(LocationBalance locationBalance);
 }

@@ -54,7 +54,7 @@ public class CostumeController {
     @PostMapping("/add/element/types")
     private String addElementTypesList(@RequestParam List<String> types) {
         elementTypeService.addElementTypeList(types);
-        return "Elemendi tüübid lisatud.";
+        return "Elemendi tüüp/tüübid lisatud.";
     }
 
     @PostMapping("/add/elements/new")
@@ -66,13 +66,13 @@ public class CostumeController {
     @PostMapping("/update/element/name")
     public String updateElementName(@RequestParam String oldName, @RequestParam String newName) {
         elementService.updateElementName(oldName, newName);
-        return "Rahvariiete elemendi nimi \"" + oldName + "\" asendatud uue nimega \"" + newName + "\"";
+        return "Rahvariiete elemendi nimi \"" + oldName + " asendatud uue nimega " + newName + " \" ";
     }
 
     @PostMapping("/update/element/description")
     public String updateElementDescription(@RequestParam String elementName, @RequestParam String newDescription) {
         elementService.updateElementDescription(elementName, newDescription);
-        return "Rahvariiete elemendi kirjeldus uuendatud.";
+        return "Kirjeldus uuendatud.";
     }
 
     @GetMapping("/get/all/element/type/names")

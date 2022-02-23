@@ -26,6 +26,7 @@ public class ValidationService {
     private static final Integer ALREADY_EXISTING_ELEMENT_NAME = 9;
     private static final Integer NO_SUCH_COSTUME_IN_ELEMENT_IN_COSTUMES = 10;
     private static final Integer INSUFFICIENT_BALANCE_ERROR_CODE = 11;
+    private static final Integer NO_BALANCE_OF_ELEMENT = 12;
 
     public void userExists(Optional<User> user, String username) {
         if (user.isEmpty()) {
@@ -106,6 +107,27 @@ public class ValidationService {
     public void sufficientBalance(Integer balance, Integer amount) {
         if (amount > balance) {
             throw new BusinessServiceException(INSUFFICIENT_BALANCE, INSUFFICIENT_BALANCE_ERROR_CODE);
+        }
+    }
+
+    public void existsBalanceInLocation(Boolean existsBalanceInLocation, String locationName) {
+        if (!existsBalanceInLocation) {
+            String message = "Laos nimega \"" + locationName + "\" pole rahvariideid";
+            throw new DataNotFoundException(message, NO_BALANCE_OF_ELEMENT);
+        }
+    }
+
+    public void existsElementBalance(Boolean existsElementBalance, String elementName) {
+        if (!existsElementBalance) {
+            String message = "Rahvariiete elementi \"" + elementName + "\" pole kasutuses.";
+            throw new DataNotFoundException(message, NO_BALANCE_OF_ELEMENT);
+        }
+    }
+
+    public void existsBalanceByUser(Boolean existsUserBalance) {
+        if (!existsUserBalance) {
+            String message = "Selle kasutaja valduses ei ole rahvariideid.";
+            throw new DataNotFoundException(message, NO_BALANCE_OF_ELEMENT);
         }
     }
 }

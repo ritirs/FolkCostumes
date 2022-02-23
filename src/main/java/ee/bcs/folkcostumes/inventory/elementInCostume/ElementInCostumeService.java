@@ -62,6 +62,7 @@ public class ElementInCostumeService {
         return elements;
     }
 
+//   Todo: siia tuleb sisse kirjutada kontroll, kas elementTYPE on juba olemas ja kas Costume on juba olemas
     public void addNewElement(List<ElementInCostumeWideRequest> elementsRequest) {
         for (ElementInCostumeWideRequest elementRequest : elementsRequest) {
             Element element = elementService.addNewElement(elementRequest);

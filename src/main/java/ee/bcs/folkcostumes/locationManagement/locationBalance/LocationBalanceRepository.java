@@ -30,6 +30,14 @@ public interface LocationBalanceRepository extends JpaRepository<LocationBalance
 
     boolean existsByUser(User user);
 
+    boolean existsByUser_Username(String username);
+
+    boolean existsByUser_Id(Integer id);
+
+
+
+
+
 
 
 

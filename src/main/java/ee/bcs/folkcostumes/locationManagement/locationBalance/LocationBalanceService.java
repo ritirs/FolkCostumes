@@ -4,6 +4,7 @@ import ee.bcs.folkcostumes.inventory.element.Element;
 import ee.bcs.folkcostumes.inventory.element.ElementService;
 import ee.bcs.folkcostumes.locationManagement.TransactionLog.TransactionLogRequest;
 import ee.bcs.folkcostumes.locationManagement.location.LocationService;
+import ee.bcs.folkcostumes.userManagement.contact.ContactService;
 import ee.bcs.folkcostumes.userManagement.user.User;
 import ee.bcs.folkcostumes.userManagement.user.UserService;
 import ee.bcs.folkcostumes.validation.ValidationService;
@@ -28,6 +29,8 @@ public class LocationBalanceService {
     private LocationService locationService;
     @Resource
     private ElementService elementService;
+    @Resource
+    private ContactService contactService;
 
     private LocationBalance getLocationBalance(TransactionLogRequest request) {
         String location = request.getLocationLocation();
@@ -91,11 +94,12 @@ public class LocationBalanceService {
         return compileBalanceStatement(balanceList);
     }
 
-    public User getUSerByFirstLastname(String firstName, String lastName) {
-        return userService.getUserByFirstLastname(firstName, lastName);
+    public User getUSerByFirstLastname(String firstname, String lastname) {
+        return userService.getUserByFirstLastname(firstname, lastname);
     }
 
-    public List<LocationBalanceStatement> getElementsByUser(User user) {
+    public List<LocationBalanceStatement> getElementsByUser(String firstname, String lastname) {
+        User user = contactService.getUserByNames(firstname, lastname);
         Boolean existsUserBalance = locationBalanceRepository.existsByUser(user);
         validationService.existsBalanceByUser(existsUserBalance);
         List<LocationBalance> balanceList = locationBalanceRepository.findByUser(user);

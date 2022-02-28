@@ -1,7 +1,10 @@
 package ee.bcs.folkcostumes.inventory.element;
 
+import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostume;
+import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeRequest;
 import ee.bcs.folkcostumes.inventory.elementInCostume.ElementInCostumeWideRequest;
 import ee.bcs.folkcostumes.inventory.elementType.ElementType;
+import ee.bcs.folkcostumes.inventory.elementType.ElementTypeDto;
 import ee.bcs.folkcostumes.inventory.elementType.ElementTypeService;
 import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
@@ -64,4 +67,9 @@ public class ElementService {
     public Element getElementByName(String elementName) {
         return elementRepository.findByElementName(elementName);
     }
+
+    public List<Element> findElementsByTypeName(String elementTypeName) {
+        return elementRepository.findElementsByElementType_ElementType(elementTypeName);
+    }
+
 }

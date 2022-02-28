@@ -1,6 +1,7 @@
 package ee.bcs.folkcostumes.userManagement.contact;
 
 import ee.bcs.folkcostumes.userManagement.user.*;
+import ee.bcs.folkcostumes.userManagement.userReport.FirstLastNames;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -59,11 +60,16 @@ public class ContactService {
         return contactMapper.contactToContactResponse(contact);
     }
 
-
-
     public List<ContactDto> getAllContactDtos() {
         List<Contact> allContacts = contactRepository.findAll();
         return contactMapper.contactsToContactDtos(allContacts);
     }
 
+    public List<FirstLastNames> getUsersByNames() {
+        return contactMapper.contactsToFirstLastName(contactRepository.findAll());
+    }
+
+    public Boolean userWithNamesExists(UserContactDataRequest userContactDataRequest) {
+        return contactRepository.existsByFirstnameAndLastname(userContactDataRequest.getFirstname(), userContactDataRequest.getLastname());
+    }
 }

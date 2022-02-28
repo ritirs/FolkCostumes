@@ -26,13 +26,17 @@ public class LocationService {
         return locationNames;
     }
 
+//    public void addNewLocation(String newLocation) {
+//        boolean locationExists = locationRepository.existsByLocation(newLocation);
+//        validationService.locationExists(locationExists, newLocation);
+//        locationMapper.newLocationNameToLocation(newLocation);
+//    }
+
     public void addNewLocations(List<String> newLocationNames) {
         for (String newLocationName : newLocationNames) {
             boolean locationExists = locationRepository.existsByLocation(newLocationName);
             validationService.locationExists(locationExists, newLocationName);
-            Location newlocation = new Location();
-            newlocation.setLocation(newLocationName);
-            locationRepository.save(newlocation);
+            locationMapper.newLocationNameToLocation(newLocationName);
         }
     }
 

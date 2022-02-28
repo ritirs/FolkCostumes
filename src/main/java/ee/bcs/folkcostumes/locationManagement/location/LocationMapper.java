@@ -10,4 +10,7 @@ public interface LocationMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateLocationFromLocationDto(LocationDto locationDto, @MappingTarget Location location);
+
+    @Mapping(target = "location", source = "newLocation")
+    Location newLocationNameToLocation(String newLocation);
 }

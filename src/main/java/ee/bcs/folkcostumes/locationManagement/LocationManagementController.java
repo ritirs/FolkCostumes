@@ -1,6 +1,8 @@
 package ee.bcs.folkcostumes.locationManagement;
 
 import ee.bcs.folkcostumes.locationManagement.TransactionLog.TransactionLogRequest;
+import ee.bcs.folkcostumes.locationManagement.location.Location;
+import ee.bcs.folkcostumes.locationManagement.location.LocationDto;
 import ee.bcs.folkcostumes.locationManagement.location.LocationService;
 import ee.bcs.folkcostumes.locationManagement.locationBalance.LocationBalanceService;
 import ee.bcs.folkcostumes.locationManagement.TransactionLog.TransactionLogService;
@@ -28,12 +30,17 @@ public class LocationManagementController {
         return locationService.getAllLocationNames();
     }
 
-//    ToDO: see meetod annab errorit. parandada
     @PostMapping("/add/locations")
     public String addLocations(@RequestParam List<String> newLocations) {
         locationService.addNewLocations(newLocations);
         return "Uued lao asukohad lisatud.";
     }
+
+//    @PostMapping("/add/new")
+//    public String addNewLocation(@RequestParam String newLocation) {
+//        locationService.addNewLocation(newLocation);
+//        return "Uus asukoht lisatud.";
+//    }
 
     @PostMapping("/make/element/transaction")
     public String addElementInTo(@RequestBody TransactionLogRequest request) {
@@ -50,11 +57,10 @@ public class LocationManagementController {
     public List<LocationBalanceStatement> getElementsQuantitiesInLocation(@RequestParam String location) {
         return locationBalanceService.getElementsQuantitiesInLocation(location);
     }
-//  TODO: siin on midagi valesti, ei anna õiget tulemust, paranda
+
     @GetMapping("/get/elements/by/user")
     public List<LocationBalanceStatement> getElementsByUser(@RequestParam String firstName, @RequestParam String lastName) {
-        User user = locationBalanceService.getUSerByFirstLastname(firstName, lastName);
-        return locationBalanceService.getElementsByUser(user);
+        return locationBalanceService.getElementsByUser(firstName, lastName);
     }
 
 

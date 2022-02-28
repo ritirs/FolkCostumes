@@ -6,6 +6,6 @@ import java.io.Serializable;
 
 @Data
 public class LocationDto implements Serializable {
-    private final Integer id;
+//    private final Integer id;
     private final String location;
 }

@@ -2,8 +2,6 @@ package ee.bcs.folkcostumes.inventory.elementInCostume;
 
 import org.mapstruct.*;
 
-import java.util.List;
-
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ElementInCostumeMapper {
     ElementInCostume elementInCostumeDtoToElementInCostume(ElementInCostumeDto elementInCostumeDto);
@@ -35,4 +33,5 @@ public interface ElementInCostumeMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateElementInCostumeFromElementInCostumeDtoLarge(ElementInCostumeDtoLarge elementInCostumeDtoLarge, @MappingTarget ElementInCostume elementInCostume);
 
+    ElementInCostumeRequest elementInCostumeToElementInCostumeRequest(ElementInCostume elementInCostume);
 }

@@ -75,6 +75,7 @@ public class UserService {
         addNewUser(userRequest);
         String username = userContactDataRequest.getUsername();
         User user = userRepository.findByUsername(username);
+        validationService.userWithFirstLastnameExists(contactService.userWithNamesExists(userContactDataRequest));
         contactService.addNewContact(userContactDataRequest, user);
     }
 
@@ -135,8 +136,8 @@ public class UserService {
         roleInGroupService.addNewRoleInGroup(user, roleType, group, roleInGroupRequest.getFirstname(), roleInGroupRequest.getLastname());
     }
 
-    public User getUserByFirstLastname(String firstName, String lastName) {
-        contactService.getUserByNames(firstName, lastName);
+    public User getUserByFirstLastname(String firstname, String lastname) {
+        contactService.getUserByNames(firstname, lastname);
         return null;
     }
 }

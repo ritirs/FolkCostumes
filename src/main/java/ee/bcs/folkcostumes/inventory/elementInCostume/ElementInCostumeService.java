@@ -3,20 +3,14 @@ package ee.bcs.folkcostumes.inventory.elementInCostume;
 import ee.bcs.folkcostumes.inventory.costume.Costume;
 import ee.bcs.folkcostumes.inventory.costume.CostumeService;
 import ee.bcs.folkcostumes.inventory.element.Element;
-import ee.bcs.folkcostumes.inventory.element.ElementDto;
 import ee.bcs.folkcostumes.inventory.element.ElementService;
 import ee.bcs.folkcostumes.inventory.elementType.ElementType;
-import ee.bcs.folkcostumes.userManagement.group.Group;
-import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroup;
-import ee.bcs.folkcostumes.userManagement.roleType.RoleType;
-import ee.bcs.folkcostumes.userManagement.user.User;
 import ee.bcs.folkcostumes.validation.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ElementInCostumeService {
@@ -33,11 +27,11 @@ public class ElementInCostumeService {
     private ValidationService validationService;
 
 
-//    public List<ElementInCostume> getAllElementsInCostumes() {
-//        List<ElementInCostume> elementsInCostumes = elementInCostumeRepository.findAll();
-////        return elementInCostumeMapper.elementsInCostumeToElementCostumeRequests(elementsInCostumes);
-//        return elementsInCostumes;
-//    }
+    public List<ElementInCostume> getAllElementsInCostumes() {
+        List<ElementInCostume> elementsInCostumes = elementInCostumeRepository.findAll();
+//        return elementInCostumeMapper.elementsInCostumeToElementCostumeRequests(elementsInCostumes);
+        return elementsInCostumes;
+    }
 
     public List<ElementInCostumeDtoLarge> getAllElementDetails() {
         List<ElementInCostumeDtoLarge> elementDetails = new ArrayList<>();
@@ -98,4 +92,21 @@ public class ElementInCostumeService {
         return elementNames;
 
     }
+
+    //TODO: võimaldab kasutajal otsida elementType nimetuse (ntks kõiki seelikud) järgi ja loob nimekirja
+    // elementType'idest, mis vastavad kriteeriumile.
+    public List<ElementInCostumeRequest> elementsByTypeName (String elementTypeName) {
+        List <ElementInCostumeRequest> elementsInCostumeByTypeName = new ArrayList<>();
+        List <Element> elementsByTypeName = elementService.findElementsByTypeName(elementTypeName);
+        List<ElementInCostume> allElementsInCostume = elementInCostumeRepository.findAll();
+        for (ElementInCostume elementInCostume : allElementsInCostume) {
+            for (Element element : elementsByTypeName) {
+                if (elementInCostume.getElement() == element) {
+                    elementsInCostumeByTypeName.add(elementInCostumeMapper.elementInCostumeToElementInCostumeRequest(elementInCostume));
+            }
+            }
+        }
+return elementsInCostumeByTypeName;
+    }
+
 }

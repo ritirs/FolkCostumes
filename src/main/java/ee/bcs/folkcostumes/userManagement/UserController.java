@@ -7,9 +7,11 @@ import ee.bcs.folkcostumes.userManagement.group.GroupService;
 import ee.bcs.folkcostumes.userManagement.roleInGroup.RoleInGroupRequest;
 import ee.bcs.folkcostumes.userManagement.roleType.RoleTypeDto;
 import ee.bcs.folkcostumes.userManagement.roleType.RoleTypeService;
+import ee.bcs.folkcostumes.userManagement.user.User;
 import ee.bcs.folkcostumes.userManagement.user.UserContactDataRequest;
 import ee.bcs.folkcostumes.userManagement.user.UserRequest;
 import ee.bcs.folkcostumes.userManagement.user.UserService;
+import ee.bcs.folkcostumes.userManagement.userReport.FirstLastNames;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,6 +29,7 @@ public class UserController {
     private GroupService groupService;
     @Resource
     private RoleTypeService roleTypeService;
+
 
 //     TODO: ei pea olema request body? võiks olal eraldi välja? küsimus frondile...
     @PostMapping("/add/new")

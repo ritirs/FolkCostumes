@@ -30,9 +30,9 @@ public class ElementTypeService {
         }
     }
 
-    public String updateElementName(String oldName, String newName) {
+    public String updateElementTypeName(String oldName, String newName) {
         validationService.elementTypeNameAlreadyExists(elementTypeRepository.existsByElementType(newName), newName);
-        ElementType newElementType = elementTypeRepository.findByElementType(oldName);
+        ElementType newElementType = elementTypeRepository.findByElementTypeName(oldName);
         newElementType.setElementType(newName);
         elementTypeRepository.save(newElementType);
         return "Endine nimetus \"" + oldName + " asendatud uue nimetusega \"" + newName;
@@ -48,18 +48,8 @@ public class ElementTypeService {
     }
 
     public ElementType getElementTypeByTypeName(String elementType) {
-        return elementTypeRepository.findByElementType(elementType);
+        return elementTypeRepository.findByElementTypeName(elementType);
     }
-
-
-    //TODO: võimaldab kasutajal otsida elementType nimetuse järgi ja loob nimekirja
-    // elementType'idest, mis vastavad kriteeriumile.
-//    public List<ElementTypeDto> findElementTypesByName(String elementType) {
-//        List<ElementType> elementTypes = elementTypeRepository.findByElementTypeName(elementType);
-//        List <ElementTypeRequest> elementTypeRequests = elementTypeMapper.elementTypesToElementTypeDtos(elementTypes);
-//        return elementTypeRequests;
-//        return null;
-//    }
 
 
 }

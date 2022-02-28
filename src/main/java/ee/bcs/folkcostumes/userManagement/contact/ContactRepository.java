@@ -8,4 +8,8 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
     Contact findByUser_Id(Integer id);
 
+    boolean existsByFirstnameAndLastname(String firstname, String lastname);
+
+
+
 }

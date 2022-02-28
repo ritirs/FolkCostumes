@@ -39,8 +39,8 @@ public class UserReportService {
         return userService.getContactsByGroupName(groupName);
     }
 
-    public User getUserByNames(String firstName, String lastName) {
-        return contactService.getUserByNames(firstName, lastName);
+    public String getUserByNames(String firstName, String lastName) {
+        return contactService.getUserByNames(firstName, lastName).getUsername();
     }
 
     public List<RoleInGroupDto> getAllUsersRolesInAGroup(String groupName) {
@@ -68,5 +68,9 @@ public class UserReportService {
 
     public List<String> getAllRoleTypeNames() {
         return roleTypeService.getAllRoleTypeNames();
+    }
+
+    public List<FirstLastNames> getAllUsersNames() {
+        return contactService.getUsersByNames();
     }
 }

@@ -12,14 +12,14 @@ import java.util.Optional;
 @Service
 public class ValidationService {
 
-    public static final String EI_EKSISTEERI = "ei eksisteeri.";
+    public static final String EI_EKSISTEERI = " ei eksisteeri.";
     public static final String INSUFFICIENT_BALANCE = "Kasutaja käes/laos pole soovitud kogust.";
 
     public static final Integer USER_NOT_EXISTS_ERROR_CODE = 1;
     public static final Integer GROUP_NOT_EXISTS_ERROR_CODE = 2;
     public static final Integer WRONG_PASSWORD = 3;
-    public static final Integer ALREADY_EXISTING_USERNAME = 4;
-    private static final Integer ALREADY_EXISTING_COSTUMENAME = 5;
+    public static final Integer ALREADY_EXISTING_USER = 4;
+    private static final Integer ALREADY_EXISTING_COSTUME = 5;
     private static final Integer ALREADY_EXISTING_ELEMENT_TYPE_NAME = 6;
     private static final Integer NO_SUCH_ELEMENT_TYPE_IN_ELEMENT_IN_COSTUMES = 7;
     private static final Integer ALREADY_EXISTING_ROLE_IN_GROUP = 8;
@@ -52,14 +52,14 @@ public class ValidationService {
     public void UserNameAlreadyExists(boolean userNameExists) {
         if (userNameExists) {
             String message = "Selline kasutajanimi" + " on juba olemas!";
-            throw new DataNotFoundException(message, ALREADY_EXISTING_USERNAME);
+            throw new DataNotFoundException(message, ALREADY_EXISTING_USER);
         }
     }
 
     public void costumeNameAlreadyExists(boolean existsByName, String newName) {
         if (existsByName) {
             String message = "Komplekt nimega \"" + newName + "\"" + " on juba olemas!";
-            throw new DataNotFoundException(message, ALREADY_EXISTING_COSTUMENAME);
+            throw new DataNotFoundException(message, ALREADY_EXISTING_COSTUME);
         }
     }
 
@@ -128,6 +128,13 @@ public class ValidationService {
         if (!existsUserBalance) {
             String message = "Selle kasutaja valduses ei ole rahvariideid.";
             throw new DataNotFoundException(message, NO_BALANCE_OF_ELEMENT);
+        }
+    }
+
+    public void userWithFirstLastnameExists(Boolean userWithNamesExists) {
+        if (userWithNamesExists) {
+            String message = "Selline kasutaja" + " on juba olemas!";
+            throw new DataNotFoundException(message, ALREADY_EXISTING_USER);
         }
     }
 }

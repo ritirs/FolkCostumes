@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-//    TODO:
+//    T ODO:
 //    1. Admin saab lisada süsteemi nimekirja Element-type ja Costume repositooriumitesse
 //    2. saab lisada Elementi, määrata sellele Element-type
 //    3. saab lisada Costume-element - määrata sellele Costume ja Element-type seosed
@@ -50,6 +50,7 @@ public class CostumeController {
 //        elementTypeService.addNewElementType(elementName);
 //        return "Uus elemendi tüüp lisatud.";
 //    }
+//    pole ükshaaval vaja lisada
 
     @PostMapping("/add/element/types")
     private String addElementTypesList(@RequestParam List<String> types) {
@@ -94,5 +95,10 @@ public class CostumeController {
     public List<ElementInCostumeDtoLarge> getAllElements() {
         return elementInCostumeService.getAllElementDetails();
     }
+
+//    @GetMapping("/elements/by/type/name")
+//    public List<ElementInCostumeRequest> elementsByTypeName(@RequestParam String elementType) {
+//        return elementInCostumeService.elementsByTypeName(elementType);
+//    }
 
 }

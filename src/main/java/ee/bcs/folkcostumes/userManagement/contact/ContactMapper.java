@@ -1,6 +1,7 @@
 package ee.bcs.folkcostumes.userManagement.contact;
 
 import ee.bcs.folkcostumes.userManagement.user.UserContactDataRequest;
+import ee.bcs.folkcostumes.userManagement.userReport.FirstLastNames;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -24,4 +25,8 @@ public interface ContactMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateContactFromContactResponse(ContactResponse contactResponse, @MappingTarget Contact contact);
+
+    FirstLastNames contactToFirstLastName(Contact contact);
+    List <FirstLastNames> contactsToFirstLastName(List <Contact> contacts);
+
 }
